@@ -1,4 +1,4 @@
-package com.quartel.blitzsplit.ui.theme
+package com.quare.blitzsplit.ui.theme
 
 import android.app.Activity
 import android.os.Build
