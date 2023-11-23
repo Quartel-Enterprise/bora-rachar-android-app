@@ -1,14 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
-    namespace = "com.quartel.blitzsplit"
+    namespace = "com.quare.blitzsplit"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.quartel.blitzsplit"
+        applicationId = "com.quare.blitzsplit"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
@@ -67,4 +68,7 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
     implementation ("com.google.android.gms:play-services-ads:22.5.0")  //AdMob
+    
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0")) //Firebase
+    implementation("com.google.firebase:firebase-analytics")
 }
