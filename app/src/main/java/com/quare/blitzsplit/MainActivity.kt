@@ -1,4 +1,4 @@
-package com.quartel.blitzsplit
+package com.quare.blitzsplit
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
-import com.quartel.blitzsplit.ui.theme.BlitzSplitTheme
+import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

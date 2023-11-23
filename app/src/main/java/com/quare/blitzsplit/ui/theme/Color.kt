@@ -1,4 +1,4 @@
-package com.quartel.blitzsplit.ui.theme
+package com.quare.blitzsplit.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
