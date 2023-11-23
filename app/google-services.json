@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791706056713",
+    "project_id": "blitz-split",
+    "storage_bucket": "blitz-split.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791706056713:android:05eeec36250eb20299a0d8",
+        "android_client_info": {
+          "package_name": "com.quare.blitzsplit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTAZpG4IrDLTIOXjw77n_wrOkkrpJZHyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
