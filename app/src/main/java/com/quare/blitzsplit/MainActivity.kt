@@ -1,6 +1,5 @@
 package com.quare.blitzsplit
 
-import android.adservices.adid.AdId
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +10,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -38,6 +36,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 @Composable
 fun BannerAd(adId: String) {
     Column(modifier = Modifier.fillMaxSize()) {
