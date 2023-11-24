@@ -10,11 +10,11 @@ import com.google.android.gms.ads.OnUserEarnedRewardListener
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 
-class PremiumAd {
-    fun showPremiumAd(activity: Activity) {
-        loadPremiumAd(activity) { premiumAd ->
-            if (premiumAd != null) {
-                premiumAd.show(activity, OnUserEarnedRewardListener { rewardItem ->
+class RewardedAd {
+    fun showRewardedAd(activity: Activity) {
+        loadRewardedAd(activity) { rewardedAd ->
+            if (rewardedAd != null) {
+                rewardedAd.show(activity, OnUserEarnedRewardListener { rewardItem ->
                     // Handle the reward.
                     val rewardAmount = rewardItem.amount
                     val rewardType = rewardItem.type
@@ -26,7 +26,7 @@ class PremiumAd {
             }
         }
     }
-    private fun loadPremiumAd(activity: Activity, callback: (RewardedAd?) -> Unit) {
+    private fun loadRewardedAd(activity: Activity, callback: (RewardedAd?) -> Unit) {
         val adRequest = AdRequest.Builder().build()
 
         RewardedAd.load(
@@ -39,9 +39,9 @@ class PremiumAd {
                     callback(null)
                 }
 
-                override fun onAdLoaded(premiumAd: RewardedAd) {
+                override fun onAdLoaded(rewardedAd: RewardedAd) {
                     Log.d(ContentValues.TAG, "Ad was loaded.")
-                    callback(premiumAd)
+                    callback(rewardedAd)
                 }
             }
         )
