@@ -31,12 +31,19 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
+import com.google.android.gms.ads.rewarded.RewardedAd
+import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
+import com.quare.blitzsplit.ads.InterstitialAdClass
+import com.quare.blitzsplit.ads.PremiumAd
 import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            val interstitialAd = InterstitialAdClass()
+            val premiumAd = PremiumAd()
+
             MobileAds.initialize(this)
             BlitzSplitTheme {
                 Surface(
@@ -51,8 +58,11 @@ class MainActivity : ComponentActivity() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         BannerAd("ca-app-pub-3940256099942544/6300978111") //Mock Id; será pego do AdMob
-                        Button(onClick = { showInterstitialAd(this@MainActivity) }) {
+                        Button(onClick = { interstitialAd.showInterstitialAd(this@MainActivity) }) {
                             Text("Show interstitial ad")
+                        }
+                        Button(onClick = { premiumAd.showPremiumAd(this@MainActivity) }) {
+                            Text("Show premium ad")
                         }
                     }
                 }
@@ -70,37 +80,6 @@ fun BannerAd(adId: String) {
                 setAdSize(AdSize.BANNER)
                 adUnitId = adId
                 loadAd(AdRequest.Builder().build())
-            }
-        }
-    )
-}
-fun showInterstitialAd(activity: Activity) {
-    loadInterstitialAd(activity) { interstitialAd ->
-        if (interstitialAd != null) {
-            // Ad loaded successfully, you can now show the interstitial ad
-            interstitialAd.show(activity)
-        } else {
-            // Ad loading failed or was not loaded, handle accordingly
-        }
-    }
-}
-
-private fun loadInterstitialAd(activity: Activity, callback: (InterstitialAd?) -> Unit) {
-    val adRequest = AdRequest.Builder().build()
-
-    InterstitialAd.load(
-        activity,
-        "ca-app-pub-3940256099942544/1033173712",
-        adRequest,
-        object : InterstitialAdLoadCallback() {
-            override fun onAdFailedToLoad(adError: LoadAdError) {
-                Log.d(TAG, adError.toString())
-                callback(null)
-            }
-
-            override fun onAdLoaded(interstitialAd: InterstitialAd) {
-                Log.d(TAG, "Ad was loaded.")
-                callback(interstitialAd)
             }
         }
     )
