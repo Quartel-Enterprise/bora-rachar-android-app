@@ -44,7 +44,7 @@ class MainActivity : ComponentActivity() {
                             Text("Show interstitial ad")
                         }
                         Button(onClick = { rewardedAd.showRewardedAd(this@MainActivity) }) {
-                            Text("Show premium ad")
+                            Text("Show rewarded ad")
                         }
                     }
                 }
@@ -52,3 +52,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
