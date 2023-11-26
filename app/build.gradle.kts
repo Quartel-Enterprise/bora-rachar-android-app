@@ -73,9 +73,11 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
 
-    implementation("com.google.android.gms:play-services-ads:22.5.0")  //AdMob
+    //AdMob
+    implementation("com.google.android.gms:play-services-ads:22.5.0")
 
-    implementation(platform("com.google.firebase:firebase-bom:32.6.0")) //Firebase
+    //Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.6.0"))
     implementation("com.google.firebase:firebase-analytics")
 
     // Hilt
