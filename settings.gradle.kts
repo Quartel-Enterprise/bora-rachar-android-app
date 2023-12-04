@@ -5,6 +5,10 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
-
 rootProject.name = "BlitzSplit"
-include(":app")
+
+val modules = listOf("app", "login")
+
+modules.forEach { module ->
+    include(":$module")
+}
