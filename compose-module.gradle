@@ -1,17 +1,13 @@
-plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
-}
+apply plugin: 'com.google.dagger.hilt.android'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
 
 android {
-    namespace = "com.quare.blitzsplit"
     compileSdk = ProjectConfig.compileSdk
 
     defaultConfig {
-        applicationId = ProjectConfig.appId
         minSdk = ProjectConfig.minSdk
         targetSdk = ProjectConfig.targetSdk
         versionCode = ProjectConfig.versionCode
@@ -22,19 +18,13 @@ android {
             useSupportLibrary = true
         }
     }
-
     buildTypes {
         release {
-            isMinifyEnabled = false
             proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
             )
         }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = "17"
@@ -59,7 +49,6 @@ android {
 dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
-
     // Debug
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
@@ -89,9 +78,6 @@ dependencies {
     // Hilt
     implementation(DaggerHilt.hiltAndroid)
     kapt(DaggerHilt.hiltCompiler)
-
-    // Login module
-    implementation(project(Modules.login))
 }
 
 // Allow references to generated code
