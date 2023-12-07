@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
     }
 }
+
 rootProject.name = "BlitzSplit"
 
 val modules = listOf("app", "login")
