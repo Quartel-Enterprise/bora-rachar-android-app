@@ -8,7 +8,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.blitzsplit.login.LoginScreen
-import com.google.android.gms.ads.MobileAds
 import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,7 +16,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MobileAds.initialize(this)
             BlitzSplitTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
