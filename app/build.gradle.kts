@@ -53,6 +53,12 @@ android {
 }
 
 dependencies {
+    // Modules
+    val modules = listOf("login", "core:ui")
+    modules.forEach { module ->
+        implementation(project(":$module"))
+    }
+
     // Compose
     implementation(platform(libs.composeBom))
     implementation(libs.ui)
@@ -70,9 +76,6 @@ dependencies {
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
-
-    // Login module
-    implementation(project(":login"))
 }
 
 // Allow references to generated code

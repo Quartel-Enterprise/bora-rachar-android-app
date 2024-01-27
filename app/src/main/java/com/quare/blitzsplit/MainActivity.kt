@@ -8,7 +8,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
 import com.blitzsplit.login.LoginScreen
-import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
+import com.blitzsplit.ui.theme.BlitzSplitTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
