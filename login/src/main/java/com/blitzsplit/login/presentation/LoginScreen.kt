@@ -53,7 +53,7 @@ fun LoginScreen() {
                     style = MaterialTheme.typography.bodyLarge,
                     textAlign = TextAlign.Center
                 )
-                VerticalSpacer(32.dp)
+                VerticalSpacer(64.dp)
                 LoginWithGoogleButton(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -64,7 +64,6 @@ fun LoginScreen() {
         }
     }
 }
-
 
 @Composable
 @Preview(showBackground = true)

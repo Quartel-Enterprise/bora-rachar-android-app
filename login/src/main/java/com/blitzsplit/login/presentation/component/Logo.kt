@@ -56,7 +56,6 @@ internal fun Logo(
     }
 }
 
-
 @Composable
 @Preview(showBackground = true)
 fun LogoPreview() {

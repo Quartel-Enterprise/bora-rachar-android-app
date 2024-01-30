@@ -2,6 +2,7 @@ package com.blitzsplit.ui.theme
 
 import android.app.Activity
 import android.os.Build
+import android.view.View
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -25,19 +26,17 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun BlitzSplitTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
-    content: @Composable () -> Unit,
-) {
+fun BlitzSplitTheme(content: @Composable () -> Unit) {
     val colorScheme = LightColorScheme // TODO: Add dark color scheme and adapt with material 3
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
+            window.apply {
+                statusBarColor = colorScheme.primary.toArgb()
+                // TODO: resolve system ui visibility deprecated (material 3)
+                decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+            }
         }
     }
 
