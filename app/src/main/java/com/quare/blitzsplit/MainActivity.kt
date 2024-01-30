@@ -4,10 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.ui.Modifier
-import com.blitzsplit.login.LoginScreen
+import com.blitzsplit.login.presentation.LoginScreen
 import com.blitzsplit.ui.theme.BlitzSplitTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -17,10 +16,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BlitzSplitTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
+                Surface(modifier = Modifier.fillMaxSize()) {
                     LoginScreen()
                 }
             }
