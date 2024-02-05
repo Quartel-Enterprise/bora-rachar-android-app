@@ -8,7 +8,7 @@ pluginManagement {
 
 rootProject.name = "BlitzSplit"
 
-val modules = listOf("app", "login", "core:ui")
+private val modules = listOf("app", "login", "core:ui")
 
 modules.forEach { module ->
     include(":$module")
