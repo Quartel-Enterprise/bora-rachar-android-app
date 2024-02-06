@@ -54,7 +54,7 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf("login", "core:ui")
+    val modules = listOf("feature:login", "core:ui")
     modules.forEach { module ->
         implementation(project(":$module"))
     }

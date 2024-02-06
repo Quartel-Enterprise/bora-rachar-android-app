@@ -22,4 +22,5 @@ plugins {
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.hiltAndroid) apply false
     alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
 }
