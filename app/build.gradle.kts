@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose)
     // Modules
     val modules = listOf("login", "core:ui")
     modules.forEach { module ->
@@ -66,12 +68,13 @@ dependencies {
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
     implementation(libs.activityCompose)
+    implementation(libs.lifecycleRuntimeCompose)
+    implementation(libs.coil)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
 
     // Firebase
     implementation(platform(libs.firebaseBom))
-    implementation(libs.firebaseAnalytics)
 
     // Hilt
     implementation(libs.daggerHilt)
