@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.quare.blitzsplit.login"
+    namespace = "com.quare.blitzsplit.groups"
     compileSdk = 33
 
     defaultConfig {
@@ -42,16 +42,19 @@ android {
 }
 
 dependencies {
+    // Modules
+    val modules = listOf("core:component", "core:theme", "feature:login")
+    modules.forEach { module ->
+        implementation(project(":$module"))
+    }
+
     // Compose
-    implementation(project(":core:theme"))
-    implementation(project(":core:component"))
     implementation(platform(libs.composeBom))
     implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
-    implementation(libs.activityCompose)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)

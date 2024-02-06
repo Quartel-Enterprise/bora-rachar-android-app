@@ -1,6 +1,8 @@
 package com.quare.blitzsplit.login.presentation
 
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -8,46 +10,54 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.quare.blitzsplit.login.presentation.component.notlogged.NotLoggedContent
 import com.quare.blitzsplit.login.presentation.viewmodel.LoginState
-import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
+import com.quare.blitzsplit.login.presentation.viewmodel.LoginUiAction
+import com.quare.blitzsplit.login.presentation.viewmodel.LoginViewModel
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
-    state: LoginState,
-    onLogin: () -> Unit,
+    loginViewModel: LoginViewModel = viewModel(),
+    loginState: LoginState,
     onNextScreen: () -> Unit,
 ) {
-    val context = LocalContext.current
-    Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-        when (state) {
-            LoginState.NotLogged -> NotLoggedContent(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(paddingValues),
-                onLogin = onLogin
-            )
 
-            LoginState.Success -> LaunchedEffect(key1 = Unit) {
-                onNextScreen()
-            }
-            is LoginState.Error -> LaunchedEffect(key1 = Unit) {
-                Toast.makeText(context, state.message, Toast.LENGTH_SHORT).show()
+    val context = LocalContext.current
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartIntentSenderForResult(),
+        onResult = { result ->
+            loginViewModel.onSuccessResultLauncher.onResult(result)
+        }
+    )
+
+    LaunchedEffect(key1 = Unit) {
+        loginViewModel.action.collectLatest { action ->
+
+            when (action) {
+                is LoginUiAction.LaunchIntent -> launcher.launch(action.intent)
+
+                is LoginUiAction.NextScreen -> onNextScreen()
+
+                is LoginUiAction.Error -> Toast.makeText(
+                    context,
+                    action.message,
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
-}
 
-
-@Composable
-@Preview(showBackground = true)
-fun LoginScreenPreview() {
-    BlitzSplitTheme {
-        LoginScreen(
-            state = LoginState.NotLogged,
-            onLogin = {},
-            onNextScreen = {}
+    Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
+        NotLoggedContent(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues),
+            onLogin = loginViewModel::onLogin,
+            isLoading = loginState.isLoading
         )
     }
 }
+

@@ -1,7 +1,3 @@
 package com.quare.blitzsplit.login.presentation.viewmodel
 
-sealed interface LoginState {
-    object Success : LoginState
-    object NotLogged : LoginState
-    data class Error(val message: String) : LoginState
-}
+data class LoginState(val isLoading: Boolean)

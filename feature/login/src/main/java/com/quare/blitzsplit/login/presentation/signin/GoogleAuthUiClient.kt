@@ -19,15 +19,9 @@ class GoogleAuthUiClient @Inject constructor(
 ) {
 
     suspend fun signIn(): IntentSender? {
-        val result = try {
-            oneTapClient.beginSignIn(
-                buildSignInRequest()
-            ).await()
-        } catch (exception: Exception) {
-            exception.printStackTrace()
-            if (exception is CancellationException) throw exception
-            null
-        }
+        val result = runCatching {
+            oneTapClient.beginSignIn(buildSignInRequest()).await()
+        }.getOrNull()
         return result?.pendingIntent?.intentSender
     }
 
@@ -48,22 +42,6 @@ class GoogleAuthUiClient @Inject constructor(
             if (exception is CancellationException) throw exception
             SignInResult.Error(exception.message)
         }
-    }
-
-    fun signOut() {
-        try {
-            auth.signOut()
-        } catch (exception: Exception) {
-            exception.printStackTrace()
-            if (exception is CancellationException) throw exception
-        }
-    }
-
-    fun getSignedInUser(): UserData? = auth.currentUser?.run {
-        UserData(
-            id = uid,
-            profilePictureUrl = photoUrl?.toString()
-        )
     }
 
     private fun buildSignInRequest(): BeginSignInRequest = BeginSignInRequest.Builder()

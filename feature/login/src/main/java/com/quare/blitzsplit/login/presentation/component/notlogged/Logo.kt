@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.blitzsplit.login.R
-import com.quare.blitzsplit.ui.component.HorizontalSpacer
-import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
-import com.quare.blitzsplit.ui.theme.Blue500
-import com.quare.blitzsplit.ui.theme.UbuntuFontFamily
+import com.quare.blitzplit.component.spacer.HorizontalSpacer
+import com.quare.blitzsplit.login.R
+import com.quare.blitzsplit.theme.BlitzSplitTheme
+import com.quare.blitzsplit.theme.Blue500
+import com.quare.blitzsplit.theme.UbuntuFontFamily
 
 @Composable
 internal fun Logo(

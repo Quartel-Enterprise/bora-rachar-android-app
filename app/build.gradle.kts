@@ -54,7 +54,7 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf("feature:login", "core:ui")
+    val modules = listOf("feature:login", "core:theme", "core:navigation")
     modules.forEach { module ->
         implementation(project(":$module"))
     }
@@ -65,10 +65,6 @@ dependencies {
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
-    implementation(libs.activityCompose)
-    implementation(libs.lifecycleRuntimeCompose)
-    implementation(libs.coil)
-    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.navigation.compose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
