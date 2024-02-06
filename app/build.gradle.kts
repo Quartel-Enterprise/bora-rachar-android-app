@@ -53,8 +53,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.navigation.compose)
     // Modules
     val modules = listOf("login", "core:ui")
     modules.forEach { module ->
@@ -70,6 +68,8 @@ dependencies {
     implementation(libs.activityCompose)
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.coil)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
 
