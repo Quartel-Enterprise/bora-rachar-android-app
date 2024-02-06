@@ -1,6 +1,9 @@
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -42,10 +45,19 @@ dependencies {
     // Compose
     implementation(project(":core:ui"))
     implementation(platform(libs.composeBom))
+    implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
+    implementation(libs.play.services.auth)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.viewModelKtx)
+
+    // Hilt
+    implementation(libs.daggerHilt)
+    kapt(libs.daggerHiltCompiler)
+
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
 }

@@ -66,12 +66,15 @@ dependencies {
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
     implementation(libs.activityCompose)
+    implementation(libs.lifecycleRuntimeCompose)
+    implementation(libs.coil)
+    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.navigation.compose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
 
     // Firebase
     implementation(platform(libs.firebaseBom))
-    implementation(libs.firebaseAnalytics)
 
     // Hilt
     implementation(libs.daggerHilt)
