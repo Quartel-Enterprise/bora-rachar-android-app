@@ -1,6 +1,7 @@
 package com.quare.blitzsplit.login.presentation.component.notlogged
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -13,12 +14,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.blitzsplit.login.R
-import com.quare.blitzsplit.ui.component.VerticalSpacer
-import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
+import com.quare.blitzplit.component.spacer.VerticalSpacer
+import com.quare.blitzsplit.login.R
+import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 @Composable
 fun NotLoggedContent(
+    isLoading: Boolean,
     onLogin: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -41,12 +43,23 @@ fun NotLoggedContent(
             textAlign = TextAlign.Center
         )
         VerticalSpacer(64.dp)
-        LoginWithGoogleButton(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = 32.dp),
-            onClick = onLogin
-        )
+        val dynamicModifier = Modifier.fillMaxWidth()
+        if (isLoading) {
+            Loading(modifier = dynamicModifier)
+        } else {
+            LoginWithGoogleButton(
+                modifier = dynamicModifier.padding(horizontal = 32.dp),
+                onClick = onLogin
+            )
+        }
+    }
+}
+
+@Composable
+private fun Loading(modifier: Modifier = Modifier) {
+    Box(modifier = modifier) {
+        Text(text = "Loading")
+//        CircularProgressIndicator()
     }
 }
 
@@ -55,6 +68,7 @@ fun NotLoggedContent(
 fun NotLoggedContentPreview() {
     BlitzSplitTheme {
         NotLoggedContent(
+            isLoading = false,
             onLogin = {}
         )
     }

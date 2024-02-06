@@ -8,8 +8,16 @@ pluginManagement {
 
 rootProject.name = "BlitzSplit"
 
-private val modules = listOf("app", "feature:login", "core:ui")
+private val featureModules = listOf("login", "groups")
+private val coreModules = listOf("theme", "navigation", "component")
 
-modules.forEach { module ->
+private val allModules = featureModules.map { "feature:$it" } +
+        coreModules.map { "core:$it" } +
+        listOf("app")
+
+allModules.forEach { module ->
     include(":$module")
 }
+include(":feature:groups")
+include(":core:component")
+include(":core:activity")

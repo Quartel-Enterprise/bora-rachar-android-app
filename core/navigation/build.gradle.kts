@@ -1,14 +1,13 @@
+@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
     kotlin("kapt")
 }
 
 android {
-    namespace = "com.quare.blitzsplit.login"
-    compileSdk = 33
+    namespace = "com.quare.blitzsplit.navigation"
+    compileSdk = 34
 
     defaultConfig {
         minSdk = 24
@@ -16,7 +15,15 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -30,38 +37,34 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
 }
 
 dependencies {
+    // Modules
+    val modules = listOf("feature:login", "feature:groups", "core:theme")
+    modules.forEach { module ->
+        implementation(project(":$module"))
+    }
+
     // Compose
-    implementation(project(":core:theme"))
-    implementation(project(":core:component"))
     implementation(platform(libs.composeBom))
     implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
+    implementation(libs.lifecycleRuntimeCompose)
+    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
-    implementation(libs.activityCompose)
+    implementation(libs.navigation.compose)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
-    implementation(libs.viewModelKtx)
-    implementation(libs.lifecycle.viewmodel.compose)
-    implementation(libs.lifecycleRuntimeCompose)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
+
+    // Firebase
+    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
-
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
 }

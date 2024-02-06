@@ -13,10 +13,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.blitzsplit.login.R
-import com.quare.blitzsplit.ui.component.HorizontalSpacer
-import com.quare.blitzsplit.ui.theme.Black100
-import com.quare.blitzsplit.ui.theme.BlitzSplitTheme
+import com.quare.blitzplit.component.spacer.HorizontalSpacer
+import com.quare.blitzsplit.login.R
+import com.quare.blitzsplit.theme.Black100
+import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 private const val MESSAGE = "Entrar com Google"
 
