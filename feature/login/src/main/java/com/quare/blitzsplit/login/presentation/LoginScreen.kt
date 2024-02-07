@@ -23,7 +23,6 @@ fun LoginScreen(
     loginState: LoginState,
     onNextScreen: () -> Unit,
 ) {
-
     val context = LocalContext.current
 
     val launcher = rememberLauncherForActivityResult(
@@ -35,13 +34,10 @@ fun LoginScreen(
 
     LaunchedEffect(key1 = Unit) {
         loginViewModel.action.collectLatest { action ->
-
             when (action) {
-                is LoginUiAction.LaunchIntent -> launcher.launch(action.intent)
-
+                is LoginUiAction.OpenGoogleLoginBottomSheet -> launcher.launch(action.intent)
                 is LoginUiAction.NextScreen -> onNextScreen()
-
-                is LoginUiAction.Error -> Toast.makeText(
+                is LoginUiAction.ShowError -> Toast.makeText(
                     context,
                     action.message,
                     Toast.LENGTH_SHORT

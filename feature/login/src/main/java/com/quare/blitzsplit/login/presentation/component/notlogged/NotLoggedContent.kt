@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -45,21 +46,13 @@ fun NotLoggedContent(
         VerticalSpacer(64.dp)
         val dynamicModifier = Modifier.fillMaxWidth()
         if (isLoading) {
-            Loading(modifier = dynamicModifier)
+            GoogleLoginLoading(modifier = dynamicModifier)
         } else {
             LoginWithGoogleButton(
                 modifier = dynamicModifier.padding(horizontal = 32.dp),
                 onClick = onLogin
             )
         }
-    }
-}
-
-@Composable
-private fun Loading(modifier: Modifier = Modifier) {
-    Box(modifier = modifier) {
-        Text(text = "Loading")
-//        CircularProgressIndicator()
     }
 }
 
