@@ -40,6 +40,7 @@ android {
 
 dependencies {
     // Compose
+    implementation(project(":core:theme"))
     implementation(platform(libs.composeBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
