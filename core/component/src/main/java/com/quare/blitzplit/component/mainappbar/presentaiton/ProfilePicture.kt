@@ -17,8 +17,8 @@ import com.quare.blitzsplit.component.R
 internal fun ProfilePicture(
     photoUrl: String?,
     onPhotoClick: () -> Unit,
-    size: Dp = 32.dp,
     modifier: Modifier = Modifier,
+    size: Dp = 40.dp,
 ) {
     val profileResource = painterResource(id = R.drawable.profile_icon)
     AsyncImage(

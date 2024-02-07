@@ -30,7 +30,6 @@ fun MainAppBar(
         },
         actions = {
             ProfilePicture(
-                size = 40.dp,
                 modifier = Modifier.padding(end = 16.dp),
                 photoUrl = data.photoUrl,
                 onPhotoClick = onPhotoClick
