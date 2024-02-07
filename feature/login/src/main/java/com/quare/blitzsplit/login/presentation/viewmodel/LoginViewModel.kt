@@ -36,7 +36,7 @@ class LoginViewModel @Inject constructor(
             result.data?.let { intent ->
                 viewModelScope.launch {
                     val signResult = googleAuthUiClient.signInWithIntent(intent)
-                    updateState(signResult)
+                    emitAction(signResult)
                 }
             }
         }
@@ -47,7 +47,7 @@ class LoginViewModel @Inject constructor(
         viewModelScope.launch {
             googleAuthUiClient.signIn()?.let { intentSender ->
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
-                _action.emit(LoginUiAction.LaunchIntent(intent = intentSenderRequest))
+                _action.emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
             }
         }
     }
@@ -61,14 +61,12 @@ class LoginViewModel @Inject constructor(
         _state.update { it.copy(isLoading = isLoading) }
     }
 
-    private fun updateState(result: SignInResult) {
-        viewModelScope.launch {
-            _action.emit(
-                when (result) {
-                    is SignInResult.Success -> LoginUiAction.NextScreen
-                    is SignInResult.Error -> LoginUiAction.Error(result.message ?: "Error")
-                }
-            )
-        }
+    private suspend fun emitAction(result: SignInResult) {
+        _action.emit(
+            when (result) {
+                is SignInResult.Success -> LoginUiAction.NextScreen
+                is SignInResult.Error -> LoginUiAction.ShowError(result.message ?: "Error")
+            }
+        )
     }
 }

@@ -5,23 +5,25 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
 import com.quare.blitzplit.component.mainappbar.presentaiton.MainAppBar
 
 @Composable
 fun GroupsScreen(
-//    groupsViewModel: GroupsViewModel = viewModel(), // TODO fix crash when creating view model
+    groupsViewModel: GroupsViewModel, // TODO fix crash when creating view model
     onPhotoClick: () -> Unit,
 ) {
-//    val groupsUiState by groupsViewModel.state.collectAsStateWithLifecycle()
+    val groupsUiState by groupsViewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = {
             MainAppBar(
                 data = MainAppBarModel(
-                    photoUrl = null,
+                    photoUrl = groupsUiState?.profilePictureUrl,
                     balanceReceivable = null,
                     balanceToPay = null,
                 ),
