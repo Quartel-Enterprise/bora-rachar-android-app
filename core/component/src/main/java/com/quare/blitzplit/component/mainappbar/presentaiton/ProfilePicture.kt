@@ -7,21 +7,29 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
+import com.quare.blitzsplit.component.R
 
 @Composable
 internal fun ProfilePicture(
     photoUrl: String?,
     onPhotoClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    size: Dp = 40.dp,
 ) {
+    val profileResource = painterResource(id = R.drawable.profile_icon)
     AsyncImage(
         model = photoUrl,
-        modifier = Modifier
-            .clickable(onClick = onPhotoClick)
-            .size(32.dp)
-            .clip(CircleShape),
+        modifier = modifier
+            .clip(CircleShape)
+            .size(size)
+            .clickable(onClick = onPhotoClick),
         contentDescription = "User profile",
         contentScale = ContentScale.Crop,
+        error = profileResource,
+        placeholder = profileResource
     )
 }

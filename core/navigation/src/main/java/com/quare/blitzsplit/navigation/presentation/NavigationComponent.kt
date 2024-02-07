@@ -9,13 +9,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
+import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
 import com.quare.blitzsplit.groups.GroupsScreen
+import com.quare.blitzsplit.groups.GroupsViewModel
 import com.quare.blitzsplit.login.presentation.LoginScreen
 import com.quare.blitzsplit.login.presentation.viewmodel.LoginViewModel
 
 @Composable
 fun NavigationComponent(
-    loginViewModel: LoginViewModel = viewModel()
+    loginViewModel: LoginViewModel = viewModel(),
 ) {
 
     val navController = rememberNavController()
@@ -37,8 +40,18 @@ fun NavigationComponent(
         }
 
         composable("groups") {
+            val groupsViewModel = hiltViewModel<GroupsViewModel>()
+            val userData by groupsViewModel.state.collectAsStateWithLifecycle()
             GroupsScreen(
-                groupsViewModel = hiltViewModel(),
+                mainAppBarModel = MainAppBarModel(
+                    photoUrl = userData?.profilePictureUrl,
+                    priceChipsModel = PriceChipsModel(
+                        toPay = "R$ 19.80",
+                        toReceive = "R$ 250.00",
+                    )
+                ),
+                onClickToPay = {},
+                onClickToReceive = {},
                 onPhotoClick = {
                     loginViewModel.onLogout()
                     navController.navigateDroppingAll("login")
