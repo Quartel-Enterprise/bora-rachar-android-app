@@ -10,6 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -28,12 +29,16 @@ fun PriceChipComponent(
             .clip(shape = RoundedCornerShape(50.dp))
             .background(color = color)
             .clickable(onClick = onClick)
-            .padding(8.dp)
+            .padding(
+                horizontal = 8.dp,
+                vertical = 4.dp
+            )
     ) {
         Text(
             fontSize = 14.sp,
             text = value,
             color = Color.White,
+            fontWeight = FontWeight.Bold
         )
     }
 }

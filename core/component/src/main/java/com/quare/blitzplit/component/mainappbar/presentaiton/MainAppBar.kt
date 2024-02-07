@@ -1,5 +1,6 @@
 package com.quare.blitzplit.component.mainappbar.presentaiton
 
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
@@ -29,6 +30,7 @@ fun MainAppBar(
         },
         actions = {
             ProfilePicture(
+                size = 40.dp,
                 modifier = Modifier.padding(end = 16.dp),
                 photoUrl = data.photoUrl,
                 onPhotoClick = onPhotoClick
