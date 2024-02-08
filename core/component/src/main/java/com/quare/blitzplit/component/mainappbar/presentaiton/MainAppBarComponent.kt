@@ -1,6 +1,5 @@
 package com.quare.blitzplit.component.mainappbar.presentaiton
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
@@ -14,7 +13,7 @@ import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainAppBar(
+fun MainAppBarComponent(
     data: MainAppBarModel,
     onPhotoClick: () -> Unit,
     onClickToPay: () -> Unit,
@@ -42,7 +41,7 @@ fun MainAppBar(
 @Preview
 fun MainAppBarPreview() {
     BlitzSplitTheme {
-        MainAppBar(
+        MainAppBarComponent(
             data = MainAppBarModel(
                 photoUrl = "https://avatars.githubusercontent.com/u/345075?v=4",
                 priceChipsModel = PriceChipsModel(

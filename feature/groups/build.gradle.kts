@@ -57,7 +57,6 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)
-    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.lifecycleRuntimeCompose)
     implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
         loading progress indicator with material 3 (remove when it's fixed)

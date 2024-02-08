@@ -4,7 +4,6 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.quare.blitzsplit.login.domain.model.SignInResult
-import com.quare.blitzsplit.login.domain.usecase.LogoutUseCase
 import com.quare.blitzsplit.login.presentation.signin.GoogleAuthUiClient
 import com.quare.blitzsplit.login.presentation.viewmodel.launcher.GoogleSuccessLauncher
 import com.quare.blitzsplit.login.presentation.viewmodel.launcher.OnSuccessResultLauncher
@@ -19,7 +18,6 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val logout: LogoutUseCase,
     private val googleAuthUiClient: GoogleAuthUiClient,
 ) : ViewModel() {
 
@@ -39,22 +37,13 @@ class LoginViewModel @Inject constructor(
     )
 
     fun onLogin() {
-        setLoading(isLoading = true)
+        _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
             googleAuthUiClient.signIn()?.let { intentSender ->
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
                 _action.emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
             }
         }
-    }
-
-    fun onLogout() {
-        logout()
-        setLoading(isLoading = false)
-    }
-
-    private fun setLoading(isLoading: Boolean) {
-        _state.update { it.copy(isLoading = isLoading) }
     }
 
     private suspend fun emitAction(result: SignInResult) {
