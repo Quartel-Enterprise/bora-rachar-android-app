@@ -51,7 +51,6 @@ dependencies {
     implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.lifecycleRuntimeCompose)
-    implementation(libs.lifecycle.viewmodel.compose)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for

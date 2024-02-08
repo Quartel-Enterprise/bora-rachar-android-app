@@ -58,7 +58,7 @@ dependencies {
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)
-    implementation(libs.lifecycle.viewmodel.compose)
+    implementation(libs.hiltNavigationCompose)
     implementation(libs.lifecycleRuntimeCompose)
 
     // Hilt

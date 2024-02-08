@@ -8,22 +8,23 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.quare.blitzsplit.login.presentation.component.notlogged.NotLoggedContent
-import com.quare.blitzsplit.login.presentation.viewmodel.LoginState
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.quare.blitzsplit.login.presentation.component.notlogged.LoginContent
 import com.quare.blitzsplit.login.presentation.viewmodel.LoginUiAction
 import com.quare.blitzsplit.login.presentation.viewmodel.LoginViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun LoginScreen(
-    loginViewModel: LoginViewModel = viewModel(),
-    loginState: LoginState,
     onNextScreen: () -> Unit,
+    loginViewModel: LoginViewModel = hiltViewModel(),
 ) {
     val context = LocalContext.current
+    val loginState by loginViewModel.state.collectAsStateWithLifecycle()
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
@@ -47,7 +48,7 @@ fun LoginScreen(
     }
 
     Scaffold(modifier = Modifier.fillMaxSize()) { paddingValues ->
-        NotLoggedContent(
+        LoginContent(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues),

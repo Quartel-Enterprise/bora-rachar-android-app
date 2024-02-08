@@ -6,27 +6,13 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
-import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
-import com.quare.blitzplit.component.mainappbar.presentaiton.MainAppBar
 
 @Composable
-fun GroupsScreen(
-    mainAppBarModel: MainAppBarModel,
-    onPhotoClick: () -> Unit,
-    onClickToPay: () -> Unit,
-    onClickToReceive: () -> Unit,
-) {
+fun GroupsScreen(mainAppBar: @Composable () -> Unit) {
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
-        topBar = {
-            MainAppBar(
-                data = mainAppBarModel,
-                onPhotoClick = onPhotoClick,
-                onClickToPay = onClickToPay,
-                onClickToReceive = onClickToReceive
-            )
-        }
+        topBar = mainAppBar
     ) { paddingValues ->
         Box(modifier = Modifier.padding(paddingValues))
     }
