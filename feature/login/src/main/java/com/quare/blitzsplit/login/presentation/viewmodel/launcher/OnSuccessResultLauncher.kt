@@ -1,4 +1,4 @@
-package com.quare.blitzsplit.login.presentation.viewmodel
+package com.quare.blitzsplit.login.presentation.viewmodel.launcher
 
 import androidx.activity.result.ActivityResult
 

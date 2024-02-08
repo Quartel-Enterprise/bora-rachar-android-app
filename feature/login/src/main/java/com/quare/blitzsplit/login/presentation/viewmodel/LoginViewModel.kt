@@ -1,12 +1,13 @@
 package com.quare.blitzsplit.login.presentation.viewmodel
 
-import androidx.activity.ComponentActivity
 import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.quare.blitzsplit.login.domain.model.SignInResult
 import com.quare.blitzsplit.login.domain.usecase.LogoutUseCase
 import com.quare.blitzsplit.login.presentation.signin.GoogleAuthUiClient
+import com.quare.blitzsplit.login.presentation.viewmodel.launcher.GoogleSuccessLauncher
+import com.quare.blitzsplit.login.presentation.viewmodel.launcher.OnSuccessResultLauncher
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -31,16 +32,11 @@ class LoginViewModel @Inject constructor(
     private val _action: MutableSharedFlow<LoginUiAction> = MutableSharedFlow()
     val action: SharedFlow<LoginUiAction> = _action
 
-    val onSuccessResultLauncher: OnSuccessResultLauncher = OnSuccessResultLauncher { result ->
-        if (result.resultCode == ComponentActivity.RESULT_OK) {
-            result.data?.let { intent ->
-                viewModelScope.launch {
-                    val signResult = googleAuthUiClient.signInWithIntent(intent)
-                    emitAction(signResult)
-                }
-            }
-        }
-    }
+    val onSuccessResultLauncher: OnSuccessResultLauncher = GoogleSuccessLauncher(
+        scope = viewModelScope,
+        googleAuthUiClient = googleAuthUiClient,
+        onSuccess = ::emitAction
+    )
 
     fun onLogin() {
         setLoading(isLoading = true)
