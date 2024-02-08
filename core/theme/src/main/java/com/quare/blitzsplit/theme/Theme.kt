@@ -12,7 +12,8 @@ import androidx.compose.ui.platform.LocalView
 private val LightColorScheme = lightColorScheme(
     primary = BabyBlue,
     secondary = BabyBlueStrong,
-    tertiary = Pink40,
+    secondaryContainer = BabyBlueStrong,
+    tertiary = BabyBlueStrong,
     surface = BabyBlue,
     onPrimary = Black200,
     background = BabyBlue,
