@@ -35,7 +35,7 @@ class MainAppBarViewModel @Inject constructor(
         // TODO: Emit action to show dialog with options to receive
     }
 
-    fun onLogout() {
+    fun onClickLogout() {
         auth.signOut()
         _state.update { firstState }
     }

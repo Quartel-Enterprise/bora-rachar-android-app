@@ -19,7 +19,7 @@ fun MainAppBar(
         onClickToPay = mainAppBarViewModel::onClickToPay,
         onClickToReceive = mainAppBarViewModel::onClickToReceive,
         onPhotoClick = {
-            mainAppBarViewModel.onLogout()
+            mainAppBarViewModel.onClickLogout()
             onLogout()
         }
     )
