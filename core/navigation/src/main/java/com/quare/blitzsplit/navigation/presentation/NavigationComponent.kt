@@ -26,20 +26,20 @@ fun NavigationComponent(
 
     NavHost(
         navController = navController,
-        startDestination = "login"
+        startDestination = Route.LOGIN
     ) {
 
-        composable("login") {
+        composable(Route.LOGIN) {
             LoginScreen(
                 loginViewModel = loginViewModel,
                 loginState = loginState,
                 onNextScreen = {
-                    navController.navigateDroppingAll("groups")
+                    navController.navigateDroppingAll(Route.GROUPS)
                 },
             )
         }
 
-        composable("groups") {
+        composable(Route.GROUPS) {
             val groupsViewModel = hiltViewModel<GroupsViewModel>()
             val userData by groupsViewModel.state.collectAsStateWithLifecycle()
             GroupsScreen(
@@ -54,7 +54,7 @@ fun NavigationComponent(
                 onClickToReceive = {},
                 onPhotoClick = {
                     loginViewModel.onLogout()
-                    navController.navigateDroppingAll("login")
+                    navController.navigateDroppingAll(Route.LOGIN)
                 }
             )
         }
