@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.quare.blitzsplit.login.presentation.LoginScreen
+import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
 import com.quare.blitzsplit.main.presentation.MainScreen
 import com.quare.blitzsplit.navigation.utils.navigateDroppingAll
 
@@ -26,8 +27,11 @@ fun NavigationComponent() {
 
         composable(Route.MAIN) {
             MainScreen(
-                backToLogin = { navController.navigateDroppingAll(Route.LOGIN) },
-                splitBillClick = {}
+                MainScreenCallbacks(
+                    backToLogin = { navController.navigateDroppingAll(Route.LOGIN) },
+                    splitBillClick = {},
+                    createGroupClick = {}
+                )
             )
         }
     }
