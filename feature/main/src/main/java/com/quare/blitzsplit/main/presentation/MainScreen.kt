@@ -12,7 +12,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.quare.blitzplit.component.mainappbar.presentaiton.MainAppBarComponent
 import com.quare.blitzplit.component.navbar.BottomNavBarComponent
-import com.quare.blitzsplit.groups.GroupsScreen
+import com.quare.blitzsplit.activities.presentation.ActivitiesScreen
+import com.quare.blitzsplit.contacts.ContactsScreen
+import com.quare.blitzsplit.groups.presentation.GroupsScreen
 import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
@@ -47,14 +49,12 @@ fun MainScreen(
                 .fillMaxSize()
                 .padding(paddingValues)
         ) {
-            GroupsScreen(
-                modifier = Modifier.align(Alignment.Center),
-                text = when (bottomBarState.selectedScreen) {
-                    BottomNavScreen.GROUPS -> "Grupos"
-                    BottomNavScreen.CONTACTS -> "Contatos"
-                    BottomNavScreen.ACTIVITY -> "Atividades"
-                }
-            )
+            val modifier = Modifier.align(Alignment.Center)
+            when (bottomBarState.selectedScreen) {
+                BottomNavScreen.GROUPS -> GroupsScreen(modifier)
+                BottomNavScreen.CONTACTS -> ContactsScreen(modifier)
+                BottomNavScreen.ACTIVITY -> ActivitiesScreen(modifier)
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-package com.quare.blitzsplit.groups
+package com.quare.blitzsplit.groups.presentation
 
 import androidx.lifecycle.ViewModel
 import com.quare.blitzsplit.login.domain.model.UserData
