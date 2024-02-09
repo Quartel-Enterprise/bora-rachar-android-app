@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.quare.blitzsplit.main"
+    namespace = "com.quare.blitzsplit.contacts"
     compileSdk = 33
 
     defaultConfig {
@@ -43,10 +43,7 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf(
-        "core:component", "core:theme",
-        "feature:login", "feature:groups", "feature:activities", "feature:contacts"
-    )
+    val modules = listOf("core:component", "core:theme")
     modules.forEach { module ->
         implementation(project(":$module"))
     }
