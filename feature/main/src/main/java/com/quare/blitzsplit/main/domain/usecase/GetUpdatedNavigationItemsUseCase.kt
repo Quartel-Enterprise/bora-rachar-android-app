@@ -4,7 +4,7 @@ import com.quare.blitzplit.component.navbar.BottomNavigationItem
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarItem
 import javax.inject.Inject
 
-class GetItemsUpdatedUseCase @Inject constructor() {
+class GetUpdatedNavigationItemsUseCase @Inject constructor() {
 
     operator fun invoke(
         items: List<BottomNavigationItem>,

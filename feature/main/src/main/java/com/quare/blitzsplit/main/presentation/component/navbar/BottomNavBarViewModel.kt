@@ -1,9 +1,8 @@
 package com.quare.blitzsplit.main.presentation.component.navbar
 
 import androidx.lifecycle.ViewModel
-import com.quare.blitzplit.component.navbar.BottomNavigationItem
 import com.quare.blitzsplit.main.domain.usecase.GetBottomBarFirstStateUseCase
-import com.quare.blitzsplit.main.domain.usecase.GetItemsUpdatedUseCase
+import com.quare.blitzsplit.main.domain.usecase.GetUpdatedNavigationItemsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +12,7 @@ import kotlinx.coroutines.flow.update
 @HiltViewModel
 class BottomNavBarViewModel @Inject constructor(
     getBottomBarFirstState: GetBottomBarFirstStateUseCase,
-    private val getItemsUpdated: GetItemsUpdatedUseCase
+    private val getUpdatedItems: GetUpdatedNavigationItemsUseCase
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<BottomNavState> = MutableStateFlow(
@@ -25,7 +24,7 @@ class BottomNavBarViewModel @Inject constructor(
     private fun onSelectItem(clickedItem: BottomNavBarItem) {
         _state.update { bottomNavState ->
             bottomNavState.copy(
-                items = getItemsUpdated(
+                items = getUpdatedItems(
                     items = bottomNavState.items,
                     clickedItem = clickedItem
                 ),
