@@ -1,12 +1,10 @@
 package com.quare.blitzsplit.main.presentation
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -16,14 +14,14 @@ import com.quare.blitzplit.component.splitbill.SplitBillButton
 import com.quare.blitzsplit.activities.presentation.ActivitiesScreen
 import com.quare.blitzsplit.contacts.ContactsScreen
 import com.quare.blitzsplit.groups.presentation.GroupsScreen
+import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
 import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
 
 @Composable
 fun MainScreen(
-    backToLogin: () -> Unit,
-    splitBillClick: () -> Unit,
+    callbacks: MainScreenCallbacks,
     mainAppBarViewModel: MainAppBarViewModel = hiltViewModel(),
     bottomBarViewModel: BottomNavBarViewModel = hiltViewModel(),
 ) {
@@ -38,28 +36,27 @@ fun MainScreen(
                 onClickToReceive = mainAppBarViewModel::onClickToReceive,
                 onPhotoClick = {
                     mainAppBarViewModel.onClickLogout()
-                    backToLogin()
+                    callbacks.backToLogin()
                 }
             )
         },
         floatingActionButton = {
-            SplitBillButton(onClick = splitBillClick)
+            SplitBillButton(onClick = callbacks.splitBillClick)
         },
         bottomBar = {
             BottomNavBarComponent(bottomBarState.items)
         }
     ) { paddingValues ->
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(paddingValues)
-        ) {
-            val modifier = Modifier.align(Alignment.Center)
-            when (bottomBarState.selectedScreen) {
-                BottomNavScreen.GROUPS -> GroupsScreen(modifier)
-                BottomNavScreen.CONTACTS -> ContactsScreen(modifier)
-                BottomNavScreen.ACTIVITY -> ActivitiesScreen(modifier)
-            }
+        val modifier = Modifier
+            .fillMaxSize()
+            .padding(paddingValues)
+        when (bottomBarState.selectedScreen) {
+            BottomNavScreen.GROUPS -> GroupsScreen(
+                modifier = modifier,
+                createGroupClick = callbacks.createGroupClick
+            )
+            BottomNavScreen.CONTACTS -> ContactsScreen(modifier)
+            BottomNavScreen.ACTIVITY -> ActivitiesScreen(modifier)
         }
     }
 }
