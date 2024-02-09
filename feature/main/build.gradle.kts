@@ -1,13 +1,14 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
-    alias(libs.plugins.androidLibrary)
-    alias(libs.plugins.kotlinAndroid)
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
+    id("com.google.dagger.hilt.android")
     kotlin("kapt")
 }
 
 android {
-    namespace = "com.quare.blitzsplit.navigation"
-    compileSdk = 34
+    namespace = "com.quare.blitzsplit.main"
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 24
@@ -15,15 +16,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    buildFeatures {
-        compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
-    }
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -37,11 +30,20 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+    buildFeatures {
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.8"
+    }
 }
 
 dependencies {
     // Modules
-    val modules = listOf("feature:login", "feature:main", "core:theme", "core:component")
+    val modules = listOf("core:component", "core:theme", "feature:login", "feature:groups")
     modules.forEach { module ->
         implementation(project(":$module"))
     }
@@ -50,24 +52,22 @@ dependencies {
     implementation(platform(libs.composeBom))
     implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
-    implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
+    implementation(libs.play.services.auth)
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.viewModelKtx)
+    implementation(libs.lifecycleRuntimeCompose)
+    implementation(libs.hiltNavigationCompose)
     implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
         loading progress indicator with material 3 (remove when it's fixed)
         https://stackoverflow.com/a/77907893/11111289
     */
-    implementation(libs.navigation.compose)
-    implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
-    implementation(libs.hiltNavigationCompose)
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
-
-    // Firebase
-    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
+
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 }
