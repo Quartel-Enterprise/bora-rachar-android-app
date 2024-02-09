@@ -1,10 +1,10 @@
-package com.quare.blitzsplit.navigation.presentation.mainappbar
+package com.quare.blitzsplit.main.presentation.component.mainappbar
 
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
 import com.quare.blitzsplit.login.domain.usecase.GetUserDataUseCase
-import com.quare.blitzsplit.navigation.usecase.GetPriceChipsUseCase
+import com.quare.blitzsplit.main.domain.usecase.GetPriceChipsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,12 +18,12 @@ class MainAppBarViewModel @Inject constructor(
     private val auth: FirebaseAuth,
 ) : ViewModel() {
 
-    private val firstState = MainAppBarModel(
-        photoUrl = getUserData()?.profilePictureUrl,
-        priceChipsModel = getPriceChips()
+    private val _state: MutableStateFlow<MainAppBarModel> = MutableStateFlow(
+        MainAppBarModel(
+            photoUrl = getUserData()?.profilePictureUrl,
+            priceChipsModel = getPriceChips()
+        )
     )
-
-    private val _state: MutableStateFlow<MainAppBarModel> = MutableStateFlow(firstState)
 
     val state: StateFlow<MainAppBarModel> = _state
 
@@ -36,7 +36,12 @@ class MainAppBarViewModel @Inject constructor(
     }
 
     fun onClickLogout() {
+        _state.update {
+            it.copy(
+                photoUrl = null,
+                priceChipsModel = null
+            )
+        }
         auth.signOut()
-        _state.update { firstState }
     }
 }

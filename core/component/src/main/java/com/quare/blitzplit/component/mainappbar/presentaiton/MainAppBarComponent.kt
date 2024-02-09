@@ -21,11 +21,13 @@ fun MainAppBarComponent(
 ) {
     TopAppBar(
         title = {
-            PricesChipsComponent(
-                priceChipsModel = data.priceChipsModel,
-                onClickToPay = onClickToPay,
-                onClickToReceive = onClickToReceive
-            )
+            data.priceChipsModel?.let {
+                PricesChipsComponent(
+                    priceChipsModel = it,
+                    onClickToPay = onClickToPay,
+                    onClickToReceive = onClickToReceive
+                )
+            }
         },
         actions = {
             ProfilePicture(

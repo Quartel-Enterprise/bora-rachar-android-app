@@ -1,8 +1,6 @@
 package com.quare.blitzsplit.navigation.presentation
 
-object Route {
+internal object Route {
     const val LOGIN = "login"
-    const val GROUPS = "groups"
-    const val CONTACTS = "contacts"
-    const val ACTIVITY = "activity"
+    const val MAIN = "main"
 }

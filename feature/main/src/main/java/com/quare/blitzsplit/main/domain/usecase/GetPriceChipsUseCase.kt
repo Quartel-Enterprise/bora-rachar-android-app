@@ -1,4 +1,4 @@
-package com.quare.blitzsplit.navigation.usecase
+package com.quare.blitzsplit.main.domain.usecase
 
 import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
 import javax.inject.Inject
