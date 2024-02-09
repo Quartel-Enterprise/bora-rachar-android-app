@@ -3,8 +3,7 @@ package com.quare.blitzsplit.main.presentation.component.mainappbar
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
-import com.quare.blitzsplit.login.domain.usecase.GetUserDataUseCase
-import com.quare.blitzsplit.main.domain.usecase.GetPriceChipsUseCase
+import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,17 +12,11 @@ import kotlinx.coroutines.flow.update
 
 @HiltViewModel
 class MainAppBarViewModel @Inject constructor(
-    getUserData: GetUserDataUseCase,
-    getPriceChips: GetPriceChipsUseCase,
+    getMainAppBarModel: GetMainAppBarModelUseCase,
     private val auth: FirebaseAuth,
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<MainAppBarModel> = MutableStateFlow(
-        MainAppBarModel(
-            photoUrl = getUserData()?.profilePictureUrl,
-            priceChipsModel = getPriceChips()
-        )
-    )
+    private val _state: MutableStateFlow<MainAppBarModel> = MutableStateFlow(getMainAppBarModel())
 
     val state: StateFlow<MainAppBarModel> = _state
 
