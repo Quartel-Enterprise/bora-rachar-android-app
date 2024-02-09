@@ -11,12 +11,13 @@ import androidx.compose.ui.platform.LocalView
 
 private val LightColorScheme = lightColorScheme(
     primary = BabyBlue,
+    primaryContainer = BabyBlueStrong,
     secondary = BabyBlueStrong,
     secondaryContainer = BabyBlueStrong,
     tertiary = BabyBlueStrong,
     surface = BabyBlue,
     onPrimary = Black200,
-    background = BabyBlue,
+    background = BabyBlue
 )
 
 @Composable

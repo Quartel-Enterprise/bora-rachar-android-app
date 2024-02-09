@@ -26,7 +26,8 @@ fun NavigationComponent() {
 
         composable(Route.MAIN) {
             MainScreen(
-                backToLogin = { navController.navigateDroppingAll(Route.LOGIN) }
+                backToLogin = { navController.navigateDroppingAll(Route.LOGIN) },
+                splitBillClick = {}
             )
         }
     }

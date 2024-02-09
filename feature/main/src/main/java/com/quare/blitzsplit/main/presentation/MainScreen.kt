@@ -12,6 +12,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.quare.blitzplit.component.mainappbar.presentaiton.MainAppBarComponent
 import com.quare.blitzplit.component.navbar.BottomNavBarComponent
+import com.quare.blitzplit.component.splitbill.SplitBillButton
 import com.quare.blitzsplit.activities.presentation.ActivitiesScreen
 import com.quare.blitzsplit.contacts.ContactsScreen
 import com.quare.blitzsplit.groups.presentation.GroupsScreen
@@ -22,6 +23,7 @@ import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
 @Composable
 fun MainScreen(
     backToLogin: () -> Unit,
+    splitBillClick: () -> Unit,
     mainAppBarViewModel: MainAppBarViewModel = hiltViewModel(),
     bottomBarViewModel: BottomNavBarViewModel = hiltViewModel(),
 ) {
@@ -39,6 +41,9 @@ fun MainScreen(
                     backToLogin()
                 }
             )
+        },
+        floatingActionButton = {
+            SplitBillButton(onClick = splitBillClick)
         },
         bottomBar = {
             BottomNavBarComponent(bottomBarState.items)
