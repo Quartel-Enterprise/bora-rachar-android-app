@@ -3,12 +3,12 @@ package com.quare.blitzsplit.login.presentation.signin
 import android.content.Intent
 import android.content.IntentSender
 import com.quare.blitzsplit.login.domain.model.SignInResult
-import com.quare.blitzsplit.login.domain.model.UserData
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.BeginSignInRequest.GoogleIdTokenRequestOptions
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
+import com.quare.blitzsplit.user.domain.model.UserModel
 import java.util.concurrent.CancellationException
 import javax.inject.Inject
 import kotlinx.coroutines.tasks.await
@@ -32,7 +32,7 @@ class GoogleAuthUiClient @Inject constructor(
         return try {
             val authResult = auth.signInWithCredential(googleCredentials).await()
             SignInResult.Success(
-                userData = UserData(
+                userModel = UserModel(
                     id = authResult.user?.uid,
                     profilePictureUrl = authResult.user?.photoUrl?.toString()
                 )

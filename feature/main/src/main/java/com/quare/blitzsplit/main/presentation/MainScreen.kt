@@ -15,6 +15,7 @@ import com.quare.blitzsplit.activities.presentation.ActivitiesScreen
 import com.quare.blitzsplit.contacts.ContactsScreen
 import com.quare.blitzsplit.groups.presentation.GroupsScreen
 import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
+import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarState
 import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
@@ -25,20 +26,24 @@ fun MainScreen(
     mainAppBarViewModel: MainAppBarViewModel = hiltViewModel(),
     bottomBarViewModel: BottomNavBarViewModel = hiltViewModel(),
 ) {
-    val mainAppBarModel by mainAppBarViewModel.state.collectAsStateWithLifecycle()
+    val mainAppBarState by mainAppBarViewModel.state.collectAsStateWithLifecycle()
     val bottomBarState by bottomBarViewModel.state.collectAsStateWithLifecycle()
 
     Scaffold(
         topBar = {
-            MainAppBarComponent(
-                data = mainAppBarModel,
-                onClickToPay = mainAppBarViewModel::onClickToPay,
-                onClickToReceive = mainAppBarViewModel::onClickToReceive,
-                onPhotoClick = {
-                    mainAppBarViewModel.onClickLogout()
-                    callbacks.backToLogin()
-                }
-            )
+            (mainAppBarState as? MainAppBarState.Success)?.let {
+                MainAppBarComponent(
+                    data = it.mainAppBarModel,
+                    onClickToPay = mainAppBarViewModel::onClickToPay,
+                    onClickToReceive = mainAppBarViewModel::onClickToReceive,
+                    onPhotoClick = {
+                        mainAppBarViewModel.onClickLogout()
+                        callbacks.backToLogin()
+                    }
+                )
+            } ?: run {
+                // TODO: render loading state for this app bar
+            }
         },
         floatingActionButton = {
             SplitBillButton(onClick = callbacks.splitBillClick)

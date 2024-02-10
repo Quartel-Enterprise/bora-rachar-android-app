@@ -5,6 +5,7 @@ buildscript {
     }
     dependencies {
         classpath("com.google.gms:google-services:4.4.0")
+        classpath("org.jetbrains.kotlin:kotlin-serialization:1.9.10")
     }
 }
 
@@ -22,4 +23,5 @@ plugins {
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.hiltAndroid) apply false
     alias(libs.plugins.googleServices) apply false
+    alias(libs.plugins.org.jetbrains.kotlin.jvm) apply false
 }
