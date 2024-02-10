@@ -9,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
 import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
+import com.quare.blitzplit.component.picture.profile.ProfilePicture
 import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
