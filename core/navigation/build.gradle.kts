@@ -22,7 +22,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
     buildTypes {
         release {
@@ -41,7 +41,7 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf("feature:login", "feature:main", "core:theme", "core:component")
+    val modules = listOf("feature:login", "feature:main", "core:theme", "core:component", "core:user")
     modules.forEach { module ->
         implementation(project(":$module"))
     }

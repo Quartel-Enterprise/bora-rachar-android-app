@@ -4,7 +4,7 @@ compose-bom = "2024.01.00"
 activity-compose = "1.8.2"
 firebase-bom = "32.7.1"
 android-gradle-plugin = "8.2.2"
-kotlin = "1.9.22"
+kotlin = "1.9.10"
 google-services = "4.4.0"
 play-services-auth = "20.7.0"
 firebase-auth-ktx = "22.3.1"
@@ -45,5 +45,6 @@ firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx",
 androidLibrary = { id = "com.android.library", version.ref = "android-gradle-plugin" }
 androidApplication = { id = "com.android.application", version.ref = "android-gradle-plugin" }
 kotlinAndroid = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+org-jetbrains-kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 hiltAndroid = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "google-services" }

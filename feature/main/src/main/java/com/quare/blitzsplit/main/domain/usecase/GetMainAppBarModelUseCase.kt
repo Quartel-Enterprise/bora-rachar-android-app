@@ -1,15 +1,15 @@
 package com.quare.blitzsplit.main.domain.usecase
 
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
-import com.quare.blitzsplit.login.domain.usecase.GetUserDataUseCase
+import com.quare.blitzsplit.user.domain.usecase.GetUserModel
 import javax.inject.Inject
 
 class GetMainAppBarModelUseCase @Inject constructor(
-    private val getUserData: GetUserDataUseCase,
+    private val getUserModel: GetUserModel,
     private val getPriceChips: GetPriceChipsUseCase,
 ) {
-    operator fun invoke(): MainAppBarModel = MainAppBarModel(
-        photoUrl = getUserData()?.profilePictureUrl,
+    suspend operator fun invoke(): MainAppBarModel = MainAppBarModel(
+        photoUrl = getUserModel()?.profilePictureUrl,
         priceChipsModel = getPriceChips()
     )
 }

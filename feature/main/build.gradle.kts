@@ -37,14 +37,14 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 }
 
 dependencies {
     // Modules
     val modules = listOf(
-        "core:component", "core:theme",
+        "core:component", "core:theme", "core:user",
         "feature:login", "feature:groups", "feature:activities", "feature:contacts"
     )
     modules.forEach { module ->

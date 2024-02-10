@@ -5,7 +5,6 @@ import com.google.android.gms.auth.api.identity.Identity
 import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.auth
-import com.quare.blitzsplit.login.domain.usecase.GetUserDataUseCase
 import com.quare.blitzsplit.login.presentation.signin.GoogleAuthUiClient
 import dagger.Module
 import dagger.Provides
@@ -28,8 +27,4 @@ object LoginModule {
         oneTapClient = Identity.getSignInClient(context),
         auth = firebaseAuth
     )
-
-    @Provides fun providesGetUserDataUseCase(
-        firebaseAuth: FirebaseAuth
-    ): GetUserDataUseCase = GetUserDataUseCase(firebaseAuth)
 }

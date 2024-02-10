@@ -37,7 +37,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.8"
+        kotlinCompilerExtensionVersion = "1.5.3"
     }
 }
 
@@ -45,6 +45,7 @@ dependencies {
     // Compose
     implementation(project(":core:theme"))
     implementation(project(":core:component"))
+    implementation(project(":core:user"))
     implementation(platform(libs.composeBom))
     implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
