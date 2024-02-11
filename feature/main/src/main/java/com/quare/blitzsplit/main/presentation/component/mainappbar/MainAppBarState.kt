@@ -7,6 +7,7 @@ sealed interface MainAppBarState {
     data object Loading : MainAppBarState
     data class Success(
         val mainAppBarModel: MainAppBarModel,
-        val priceChipsClicks: PriceChipsClicks
+        val priceChipsClicks: PriceChipsClicks,
+        val currentDialog: MainAppDialog?
     ) : MainAppBarState
 }

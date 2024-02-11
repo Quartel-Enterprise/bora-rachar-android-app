@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -16,8 +17,10 @@ import com.quare.blitzsplit.contacts.ContactsScreen
 import com.quare.blitzsplit.groups.presentation.GroupsScreen
 import com.quare.blitzsplit.groups.presentation.viewmodel.GroupsViewModel
 import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
+import com.quare.blitzsplit.main.presentation.component.dialog.MainScreenDialog
 import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarState
 import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarViewModel
+import com.quare.blitzsplit.main.presentation.component.mainappbar.MainScreenAction
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarViewModel
 import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
 
@@ -32,16 +35,31 @@ fun MainScreen(
     val bottomBarState by bottomBarViewModel.state.collectAsStateWithLifecycle()
     val groupsState by groupsViewModel.state.collectAsStateWithLifecycle()
 
+    val successMainAppBarState = mainAppBarState as? MainAppBarState.Success
+
+    successMainAppBarState?.currentDialog?.let { currentDialog ->
+        MainScreenDialog(
+            dialogType = currentDialog,
+            onLogout = mainAppBarViewModel::onClickLogout,
+            onDismiss = mainAppBarViewModel::onDismissDialog
+        )
+    }
+
+    LaunchedEffect(key1 = Unit) {
+        mainAppBarViewModel.action.collect { action ->
+            when (action) {
+                MainScreenAction.BACK_TO_LOGIN -> callbacks.backToLogin()
+            }
+        }
+    }
+
     Scaffold(
         topBar = {
-            (mainAppBarState as? MainAppBarState.Success)?.let {
+            successMainAppBarState?.let {
                 MainAppBarComponent(
                     data = it.mainAppBarModel,
                     priceChipsClicks = it.priceChipsClicks,
-                    onPhotoClick = {
-                        mainAppBarViewModel.onClickLogout()
-                        callbacks.backToLogin()
-                    }
+                    onPhotoClick = mainAppBarViewModel::onProfilePictureClick
                 )
             } ?: run {
                 // TODO: render loading state for this app bar

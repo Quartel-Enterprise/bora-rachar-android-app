@@ -8,7 +8,9 @@ import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -25,6 +27,11 @@ class MainAppBarViewModel @Inject constructor(
 
     val state: StateFlow<MainAppBarState> = _state
 
+    private val _action: MutableSharedFlow<MainScreenAction> = MutableSharedFlow()
+    val action: SharedFlow<MainScreenAction> = _action
+
+    private val successUiState get() = _state.value as MainAppBarState.Success
+
     init {
         viewModelScope.launch {
             _state.update {
@@ -33,24 +40,38 @@ class MainAppBarViewModel @Inject constructor(
                     priceChipsClicks = PriceChipsClicks(
                         toPay = ::onClickToPay,
                         toReceive = ::onClickToReceive,
-                    )
+                    ),
+                    currentDialog = null
                 )
             }
         }
     }
 
-    private fun onClickToPay() {
-        // TODO: Emit action to show dialog with options to pay
+    fun onProfilePictureClick() {
+        updateCurrentDialog(MainAppDialog.LOGOUT)
     }
 
-    private fun onClickToReceive() {
-        // TODO: Emit action to show dialog with options to receive
+    fun onDismissDialog() {
+        updateCurrentDialog(null)
     }
 
     fun onClickLogout() {
         viewModelScope.launch {
             clearLocalUser()
             auth.signOut()
+            _action.emit(MainScreenAction.BACK_TO_LOGIN)
         }
+    }
+
+    private fun onClickToPay() {
+        updateCurrentDialog(MainAppDialog.PAY)
+    }
+
+    private fun onClickToReceive() {
+        updateCurrentDialog(MainAppDialog.RECEIVE)
+    }
+
+    private fun updateCurrentDialog(newDialog: MainAppDialog?) {
+        _state.update { successUiState.copy(currentDialog = newDialog) }
     }
 }
