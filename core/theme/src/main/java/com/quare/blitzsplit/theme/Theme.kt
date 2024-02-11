@@ -11,10 +11,10 @@ import androidx.compose.ui.platform.LocalView
 
 private val LightColorScheme = lightColorScheme(
     primary = Blue100,
-    primaryContainer = Blue300,
-    secondary = Blue300,
-    secondaryContainer = Blue300,
-    tertiary = Blue300,
+    primaryContainer = Blue400,
+    secondary = Blue400,
+    secondaryContainer = Blue400,
+    tertiary = Blue400,
     surface = Blue100,
     onPrimary = Black200,
     background = Blue100

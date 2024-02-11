@@ -44,7 +44,8 @@ fun NavigationComponent(
                 callbacks = MainScreenCallbacks(
                     backToLogin = { navController.navigateDroppingAll(Route.LOGIN) },
                     splitBillClick = {},
-                    createGroupClick = {}
+                    createGroupClick = {},
+                    onGroupClick = {}
                 )
             )
         }
