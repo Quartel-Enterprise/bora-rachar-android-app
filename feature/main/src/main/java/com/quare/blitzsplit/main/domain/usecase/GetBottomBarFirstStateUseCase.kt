@@ -1,19 +1,19 @@
 package com.quare.blitzsplit.main.domain.usecase
 
-import com.quare.blitzplit.component.navbar.BottomNavigationItem
-import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarItem
-import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
-import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavState
+import com.quare.blitzsplit.main.presentation.component.navbar.model.BottomNavigationItem
+import com.quare.blitzsplit.main.presentation.component.navbar.model.BlitzSplitNavBarItem
+import com.quare.blitzsplit.main.presentation.component.navbar.model.BlitzSplitNavType
+import com.quare.blitzsplit.main.presentation.viewmodel.bottom.BottomNavState
 import javax.inject.Inject
 
 class GetBottomBarFirstStateUseCase @Inject constructor() {
 
-    operator fun invoke(onSelectItem: (BottomNavBarItem) -> Unit): BottomNavState = BottomNavState(
-        selectedScreen = BottomNavScreen.GROUPS,
+    operator fun invoke(onSelectItem: (BlitzSplitNavBarItem) -> Unit): BottomNavState = BottomNavState(
+        selectedScreen = BlitzSplitNavType.GROUPS,
         items = listOf(
-            BottomNavBarItem.Groups(isSelected = true),
-            BottomNavBarItem.Contacts(isSelected = false),
-            BottomNavBarItem.Activity(isSelected = false)
+            BlitzSplitNavBarItem.Groups(isSelected = true),
+            BlitzSplitNavBarItem.Contacts(isSelected = false),
+            BlitzSplitNavBarItem.Activity(isSelected = false)
         ).map { item ->
             BottomNavigationItem(
                 title = item.title,

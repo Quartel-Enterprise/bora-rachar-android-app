@@ -1,6 +1,6 @@
 package com.quare.blitzsplit.main.domain.usecase
 
-import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
+import com.quare.blitzsplit.main.domain.model.MainAppBarModel
 import com.quare.blitzsplit.user.domain.usecase.GetUserModel
 import javax.inject.Inject
 

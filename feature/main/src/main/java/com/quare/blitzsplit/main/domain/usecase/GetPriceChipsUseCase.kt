@@ -1,6 +1,6 @@
 package com.quare.blitzsplit.main.domain.usecase
 
-import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
+import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
 import javax.inject.Inject
 
 class GetPriceChipsUseCase @Inject constructor() {

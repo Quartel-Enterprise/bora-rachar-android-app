@@ -1,20 +1,20 @@
 package com.quare.blitzsplit.main.presentation.component.dialog
 
 import androidx.compose.runtime.Composable
-import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppDialog
+import com.quare.blitzsplit.main.domain.model.MainDialogType
 
 @Composable
 fun MainScreenDialog(
-    dialogType: MainAppDialog,
+    dialogType: MainDialogType,
     onLogout: () -> Unit,
     onDismiss: () -> Unit,
 ) {
     when (dialogType) {
-        MainAppDialog.LOGOUT -> LogoutDialog(
+        MainDialogType.LOGOUT -> LogoutDialog(
             onLogout = onLogout,
             onDismiss = onDismiss
         )
-        MainAppDialog.RECEIVE -> TODO()
-        MainAppDialog.PAY -> TODO()
+        MainDialogType.RECEIVE -> TODO()
+        MainDialogType.PAY -> TODO()
     }
 }

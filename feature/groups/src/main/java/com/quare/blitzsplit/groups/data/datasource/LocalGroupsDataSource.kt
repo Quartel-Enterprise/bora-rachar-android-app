@@ -1,6 +1,6 @@
 package com.quare.blitzsplit.groups.data.datasource
 
-import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
+import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
 import com.quare.blitzsplit.groups.data.StaticImages
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.domain.model.MoreParticipantsModel

@@ -1,4 +1,4 @@
-package com.quare.blitzplit.component.navbar
+package com.quare.blitzsplit.main.presentation.component.navbar
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -8,7 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.quare.blitzsplit.component.R
+import com.quare.blitzsplit.main.R
+import com.quare.blitzsplit.main.presentation.component.navbar.model.BottomNavigationItem
 import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 @Composable

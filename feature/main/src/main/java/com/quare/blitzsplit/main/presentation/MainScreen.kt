@@ -9,29 +9,29 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.quare.blitzplit.component.mainappbar.presentaiton.MainAppBarComponent
-import com.quare.blitzplit.component.navbar.BottomNavBarComponent
-import com.quare.blitzplit.component.splitbill.SplitBillButton
+import com.quare.blitzsplit.main.presentation.component.MainAppBarComponent
+import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarComponent
+import com.quare.blitzsplit.main.presentation.component.SplitBillButton
 import com.quare.blitzsplit.activities.presentation.ActivitiesScreen
 import com.quare.blitzsplit.contacts.ContactsScreen
 import com.quare.blitzsplit.groups.presentation.GroupsScreen
 import com.quare.blitzsplit.groups.presentation.viewmodel.GroupsViewModel
 import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
 import com.quare.blitzsplit.main.presentation.component.dialog.MainScreenDialog
-import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarState
-import com.quare.blitzsplit.main.presentation.component.mainappbar.MainAppBarViewModel
-import com.quare.blitzsplit.main.presentation.component.mainappbar.MainScreenAction
-import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavBarViewModel
-import com.quare.blitzsplit.main.presentation.component.navbar.BottomNavScreen
+import com.quare.blitzsplit.main.presentation.viewmodel.MainAppBarState
+import com.quare.blitzsplit.main.presentation.viewmodel.MainScreenViewModel
+import com.quare.blitzsplit.main.presentation.viewmodel.MainScreenAction
+import com.quare.blitzsplit.main.presentation.viewmodel.bottom.BottomNavBarViewModel
+import com.quare.blitzsplit.main.presentation.component.navbar.model.BlitzSplitNavType
 
 @Composable
 fun MainScreen(
     callbacks: MainScreenCallbacks,
-    mainAppBarViewModel: MainAppBarViewModel = hiltViewModel(),
+    mainScreenViewModel: MainScreenViewModel = hiltViewModel(),
     bottomBarViewModel: BottomNavBarViewModel = hiltViewModel(),
     groupsViewModel: GroupsViewModel = hiltViewModel(),
 ) {
-    val mainAppBarState by mainAppBarViewModel.state.collectAsStateWithLifecycle()
+    val mainAppBarState by mainScreenViewModel.state.collectAsStateWithLifecycle()
     val bottomBarState by bottomBarViewModel.state.collectAsStateWithLifecycle()
     val groupsState by groupsViewModel.state.collectAsStateWithLifecycle()
 
@@ -40,13 +40,13 @@ fun MainScreen(
     successMainAppBarState?.currentDialog?.let { currentDialog ->
         MainScreenDialog(
             dialogType = currentDialog,
-            onLogout = mainAppBarViewModel::onClickLogout,
-            onDismiss = mainAppBarViewModel::onDismissDialog
+            onLogout = mainScreenViewModel::onClickLogout,
+            onDismiss = mainScreenViewModel::onDismissDialog
         )
     }
 
     LaunchedEffect(key1 = Unit) {
-        mainAppBarViewModel.action.collect { action ->
+        mainScreenViewModel.action.collect { action ->
             when (action) {
                 MainScreenAction.BACK_TO_LOGIN -> callbacks.backToLogin()
             }
@@ -59,7 +59,7 @@ fun MainScreen(
                 MainAppBarComponent(
                     data = it.mainAppBarModel,
                     priceChipsClicks = it.priceChipsClicks,
-                    onPhotoClick = mainAppBarViewModel::onProfilePictureClick
+                    onPhotoClick = mainScreenViewModel::onProfilePictureClick
                 )
             } ?: run {
                 // TODO: render loading state for this app bar
@@ -76,14 +76,14 @@ fun MainScreen(
             .fillMaxSize()
             .padding(paddingValues)
         when (bottomBarState.selectedScreen) {
-            BottomNavScreen.GROUPS -> GroupsScreen(
+            BlitzSplitNavType.GROUPS -> GroupsScreen(
                 modifier = modifier,
                 createGroupClick = callbacks.createGroupClick,
                 uiState = groupsState,
                 onGroupClick = callbacks.onGroupClick
             )
-            BottomNavScreen.CONTACTS -> ContactsScreen(modifier)
-            BottomNavScreen.ACTIVITY -> ActivitiesScreen(modifier)
+            BlitzSplitNavType.CONTACTS -> ContactsScreen(modifier)
+            BlitzSplitNavType.ACTIVITY -> ActivitiesScreen(modifier)
         }
     }
 }

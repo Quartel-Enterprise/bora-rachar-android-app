@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
+import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
 import com.quare.blitzplit.component.spacer.HorizontalSpacer
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.theme.BlitzSplitTheme

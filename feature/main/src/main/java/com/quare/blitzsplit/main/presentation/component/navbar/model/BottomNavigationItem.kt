@@ -1,4 +1,4 @@
-package com.quare.blitzplit.component.navbar
+package com.quare.blitzsplit.main.presentation.component.navbar.model
 
 import androidx.annotation.DrawableRes
 
