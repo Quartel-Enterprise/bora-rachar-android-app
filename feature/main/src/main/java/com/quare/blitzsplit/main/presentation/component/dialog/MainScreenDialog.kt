@@ -14,7 +14,11 @@ fun MainScreenDialog(
             onLogout = onLogout,
             onDismiss = onDismiss
         )
-        MainDialogType.RECEIVE -> TODO()
-        MainDialogType.PAY -> TODO()
+        MainDialogType.RECEIVE -> {
+            // TODO: ReceiveDialog()
+        }
+        MainDialogType.PAY -> {
+            // TODO: PayDialog()
+        }
     }
 }
