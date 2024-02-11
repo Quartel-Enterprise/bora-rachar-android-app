@@ -24,8 +24,6 @@ fun PricesChipsComponent(
     orientation: Orientation = Orientation.Horizontal,
 ) {
 
-
-
     val toPayComponent: @Composable () -> Unit = {
         priceChipsModel.toPay?.let {
             PriceChipComponent(
@@ -66,7 +64,7 @@ fun PricesChipsComponent(
         Column(
             modifier = modifier,
             verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.End
         ) {
             toPayComponent()
             toReceiveComponent()
