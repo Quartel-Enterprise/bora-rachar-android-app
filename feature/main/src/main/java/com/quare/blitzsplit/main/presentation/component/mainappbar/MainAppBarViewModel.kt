@@ -3,6 +3,7 @@ package com.quare.blitzsplit.main.presentation.component.mainappbar
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
+import com.quare.blitzplit.component.pricechip.PriceChipsClicks
 import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,16 +28,22 @@ class MainAppBarViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             _state.update {
-                MainAppBarState.Success(getMainAppBarModel())
+                MainAppBarState.Success(
+                    mainAppBarModel = getMainAppBarModel(),
+                    priceChipsClicks = PriceChipsClicks(
+                        toPay = ::onClickToPay,
+                        toReceive = ::onClickToReceive,
+                    )
+                )
             }
         }
     }
 
-    fun onClickToPay() {
+    private fun onClickToPay() {
         // TODO: Emit action to show dialog with options to pay
     }
 
-    fun onClickToReceive() {
+    private fun onClickToReceive() {
         // TODO: Emit action to show dialog with options to receive
     }
 

@@ -1,6 +1,7 @@
 package com.quare.blitzplit.component.mainappbar.presentaiton
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -9,7 +10,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.quare.blitzplit.component.mainappbar.domain.MainAppBarModel
 import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
-import com.quare.blitzplit.component.picture.profile.ProfilePicture
+import com.quare.blitzplit.component.picture.profile.UserProfilePicture
+import com.quare.blitzplit.component.pricechip.PriceChipsClicks
+import com.quare.blitzplit.component.pricechip.PricesChipsComponent
 import com.quare.blitzsplit.theme.BlitzSplitTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -17,21 +20,20 @@ import com.quare.blitzsplit.theme.BlitzSplitTheme
 fun MainAppBarComponent(
     data: MainAppBarModel,
     onPhotoClick: () -> Unit,
-    onClickToPay: () -> Unit,
-    onClickToReceive: () -> Unit,
+    priceChipsClicks: PriceChipsClicks,
 ) {
     TopAppBar(
         title = {
             data.priceChipsModel?.let {
                 PricesChipsComponent(
                     priceChipsModel = it,
-                    onClickToPay = onClickToPay,
-                    onClickToReceive = onClickToReceive
+                    clicks = priceChipsClicks,
                 )
             }
         },
         actions = {
-            ProfilePicture(
+            UserProfilePicture(
+                size = 30.dp,
                 modifier = Modifier.padding(end = 16.dp),
                 photoUrl = data.photoUrl,
                 onPhotoClick = onPhotoClick
@@ -53,8 +55,10 @@ fun MainAppBarPreview() {
                 ),
             ),
             onPhotoClick = {},
-            onClickToPay = {},
-            onClickToReceive = {}
+            priceChipsClicks = PriceChipsClicks(
+                toPay = {},
+                toReceive = {},
+            )
         )
     }
 }

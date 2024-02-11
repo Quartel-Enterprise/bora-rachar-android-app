@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.quare.blitzplit.component.spacer.HorizontalSpacer
 import com.quare.blitzsplit.theme.BlitzSplitTheme
-import com.quare.blitzsplit.theme.Blue200
+import com.quare.blitzsplit.theme.Blue300
 
 @Composable
 fun CreateGroupButton(
@@ -23,7 +23,7 @@ fun CreateGroupButton(
     Button(
         modifier = modifier,
         onClick = onClick,
-        colors = ButtonDefaults.buttonColors(containerColor = Blue200)
+        colors = ButtonDefaults.buttonColors(containerColor = Blue300)
     ) {
         Icon(
             imageVector = Icons.Filled.Add,
