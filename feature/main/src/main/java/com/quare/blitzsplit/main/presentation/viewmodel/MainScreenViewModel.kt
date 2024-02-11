@@ -1,10 +1,11 @@
-package com.quare.blitzsplit.main.presentation.component.mainappbar
+package com.quare.blitzsplit.main.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.pricechip.PriceChipsClicks
 import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
+import com.quare.blitzsplit.main.domain.model.MainDialogType
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -16,7 +17,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 @HiltViewModel
-class MainAppBarViewModel @Inject constructor(
+class MainScreenViewModel @Inject constructor(
     getMainAppBarModel: GetMainAppBarModelUseCase,
     private val auth: FirebaseAuth,
     private val clearLocalUser: ClearLocalUser,
@@ -48,7 +49,7 @@ class MainAppBarViewModel @Inject constructor(
     }
 
     fun onProfilePictureClick() {
-        updateCurrentDialog(MainAppDialog.LOGOUT)
+        updateCurrentDialog(MainDialogType.LOGOUT)
     }
 
     fun onDismissDialog() {
@@ -64,14 +65,14 @@ class MainAppBarViewModel @Inject constructor(
     }
 
     private fun onClickToPay() {
-        updateCurrentDialog(MainAppDialog.PAY)
+        updateCurrentDialog(MainDialogType.PAY)
     }
 
     private fun onClickToReceive() {
-        updateCurrentDialog(MainAppDialog.RECEIVE)
+        updateCurrentDialog(MainDialogType.RECEIVE)
     }
 
-    private fun updateCurrentDialog(newDialog: MainAppDialog?) {
+    private fun updateCurrentDialog(newDialog: MainDialogType?) {
         _state.update { successUiState.copy(currentDialog = newDialog) }
     }
 }

@@ -1,4 +1,4 @@
-package com.quare.blitzplit.component.mainappbar.domain
+package com.quare.blitzplit.component.pricechip.model
 
 data class PriceChipsModel(
     val toPay: String?,

@@ -1,6 +1,6 @@
 package com.quare.blitzsplit.groups.domain.model
 
-import com.quare.blitzplit.component.mainappbar.domain.PriceChipsModel
+import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
 
 sealed interface GroupsScreenItem {
 

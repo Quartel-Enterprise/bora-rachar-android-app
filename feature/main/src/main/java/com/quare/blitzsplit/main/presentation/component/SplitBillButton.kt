@@ -1,4 +1,4 @@
-package com.quare.blitzplit.component.splitbill
+package com.quare.blitzsplit.main.presentation.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
