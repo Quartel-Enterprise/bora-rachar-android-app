@@ -2,6 +2,7 @@ package com.quare.blitzsplit.theme
 
 import androidx.compose.ui.graphics.Color
 
+val Gray500 = Color(0XFFB0B0B0)
 val Black100 = Color(0x8A000000)
 val Black200 = Color(0XFF49454F)
 val Black300 = Color(0XFF1D1B20)

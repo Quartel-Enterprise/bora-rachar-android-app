@@ -1,6 +1,6 @@
 package com.quare.blitzsplit.groups.data.datasource
 
-import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
+import com.quare.blitzplit.component.chip.price.model.PriceChipsModel
 import com.quare.blitzsplit.groups.data.StaticImages
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.domain.model.MoreParticipantsModel
@@ -8,9 +8,9 @@ import com.quare.blitzsplit.groups.domain.model.UserDebitsModel
 import javax.inject.Inject
 
 class LocalGroupsDataSource @Inject constructor() {
-    fun getGroups(): Result<List<GroupsScreenItem.GroupItemModel>> = Result.success(
+    fun getGroups(): Result<List<GroupsScreenItem.GroupItem>> = Result.success(
         listOf(
-            GroupsScreenItem.GroupItemModel(
+            GroupsScreenItem.GroupItem.WithDebits(
                 id = "1",
                 name = "Quartel Otaku",
                 userDebits = UserDebitsModel(
@@ -33,7 +33,7 @@ class LocalGroupsDataSource @Inject constructor() {
                     StaticImages.PIERRE,
                 )
             ),
-            GroupsScreenItem.GroupItemModel(
+            GroupsScreenItem.GroupItem.WithDebits(
                 id = "2",
                 name = "Quartel Ancap",
                 userDebits = UserDebitsModel(
@@ -51,6 +51,20 @@ class LocalGroupsDataSource @Inject constructor() {
                 ),
                 profilePictures = listOf(
                     StaticImages.ARRIGHI,
+                    StaticImages.THIAGO,
+                    StaticImages.FABIRCIO,
+                    StaticImages.PIERRE,
+                )
+            ),
+            GroupsScreenItem.GroupItem.PaidOff(
+                id = "3",
+                name = "Quartel Escalada",
+                moreParticipants = MoreParticipantsModel(
+                    amount = 0,
+                    shouldShow = false,
+                ),
+                imageUrl = StaticImages.ESCALADA,
+                profilePictures = listOf(
                     StaticImages.THIAGO,
                     StaticImages.FABIRCIO,
                     StaticImages.PIERRE,

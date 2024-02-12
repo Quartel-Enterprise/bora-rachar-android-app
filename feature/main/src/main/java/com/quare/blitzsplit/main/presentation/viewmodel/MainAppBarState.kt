@@ -1,7 +1,7 @@
 package com.quare.blitzsplit.main.presentation.viewmodel
 
 import com.quare.blitzsplit.main.domain.model.MainAppBarModel
-import com.quare.blitzplit.component.pricechip.PriceChipsClicks
+import com.quare.blitzplit.component.chip.price.PriceChipsClicks
 import com.quare.blitzsplit.main.domain.model.MainDialogType
 
 sealed interface MainAppBarState {
