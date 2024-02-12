@@ -6,7 +6,8 @@ import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.quare.blitzsplit.login.domain.model.SignInResult
-import com.quare.blitzsplit.login.presentation.signin.GoogleAuthUiClient
+import com.quare.blitzsplit.login.presentation.signin.SignInResultProvider
+import com.quare.blitzsplit.login.presentation.signin.IntentSenderProvider
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -18,7 +19,8 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val googleAuthUiClient: GoogleAuthUiClient,
+    private val intentSenderProvider: IntentSenderProvider,
+    private val signInResultProvider: SignInResultProvider,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<LoginState> = MutableStateFlow(
@@ -33,7 +35,7 @@ class LoginViewModel @Inject constructor(
     fun onLogin() {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            googleAuthUiClient.signIn()?.let { intentSender ->
+            intentSenderProvider.signIn()?.let { intentSender ->
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
                 emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
             }
@@ -44,7 +46,7 @@ class LoginViewModel @Inject constructor(
         if (result.isOk()) {
             result.data?.let { intent ->
                 viewModelScope.launch {
-                    val signResult = googleAuthUiClient.signInWithIntent(intent)
+                    val signResult = signInResultProvider.signInWithIntent(intent)
                     emitSignResult(signResult)
                 }
             }
