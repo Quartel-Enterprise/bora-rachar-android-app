@@ -22,9 +22,11 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object UserDataModule {
 
+    private val serializer = UserDataSerializer
+
     private val Context.userDataStore: DataStore<UserDto> by dataStore(
         fileName = "user.json",
-        serializer = UserDataSerializer
+        serializer = serializer
     )
 
     @Provides
@@ -42,7 +44,8 @@ object UserDataModule {
     fun provideLocalUserDataSource(
         dataStore: DataStore<UserDto>,
     ): LocalUserDataSource = LocalUserDataSource(
-        dataStore = dataStore
+        dataStore = dataStore,
+        serializer = serializer
     )
 
     @Singleton
