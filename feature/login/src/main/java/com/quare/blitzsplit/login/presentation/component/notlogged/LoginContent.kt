@@ -1,6 +1,7 @@
 package com.quare.blitzsplit.login.presentation.component.notlogged
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -26,22 +27,24 @@ fun LoginContent(
     Column(
         modifier = modifier,
         horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.SpaceAround
     ) {
-        Image(
-            painter = painterResource(id = R.drawable.bora_rachar_login_initial_page),
-            contentDescription = "background login"
-        )
-        VerticalSpacer(32.dp)
-        Logo(modifier = Modifier.fillMaxWidth())
-        VerticalSpacer(32.dp)
-        Text(
-            modifier = Modifier
-                .padding(horizontal = 32.dp),
-            text = "Divida Experiências Sem Estresse!",
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center
-        )
-        VerticalSpacer(64.dp)
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Logo(modifier = Modifier.fillMaxWidth())
+            VerticalSpacer()
+            Text(
+                modifier = Modifier
+                    .padding(horizontal = 32.dp),
+                text = "Divida Experiências Sem Estresse!",
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center
+            )
+            VerticalSpacer(32.dp)
+            Image(
+                painter = painterResource(id = R.drawable.blitz_split_login_art),
+                contentDescription = "background login"
+            )
+        }
         val dynamicModifier = Modifier.fillMaxWidth()
         if (isLoading) {
             GoogleLoginLoading(modifier = dynamicModifier)
