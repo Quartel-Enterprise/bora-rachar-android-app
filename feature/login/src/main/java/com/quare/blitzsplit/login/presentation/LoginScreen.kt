@@ -28,9 +28,7 @@ fun LoginScreen(
 
     val launcher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartIntentSenderForResult(),
-        onResult = { result ->
-            loginViewModel.onSuccessResultLauncher.onResult(result)
-        }
+        onResult = loginViewModel::selectGoogleUser
     )
 
     LaunchedEffect(key1 = Unit) {
