@@ -18,9 +18,7 @@ fun DialogComponent(
         title = {
             Text(text = title)
         },
-        text = {
-            middleContent()
-        },
+        text = middleContent,
         confirmButton = {
             DialogTextButton(
                 text = confirmButtonText,
