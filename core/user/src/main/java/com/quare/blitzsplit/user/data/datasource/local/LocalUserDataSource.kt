@@ -1,6 +1,7 @@
 package com.quare.blitzsplit.user.data.datasource.local
 
 import androidx.datastore.core.DataStore
+import androidx.datastore.core.Serializer
 import com.quare.blitzsplit.user.data.dto.UserDto
 import com.quare.blitzsplit.user.domain.model.UserModel
 import javax.inject.Inject
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.map
 @Singleton
 class LocalUserDataSource @Inject constructor(
     private val dataStore: DataStore<UserDto>,
+    private val serializer: Serializer<UserDto>
 ) {
 
     private var cache: UserModel? = null
@@ -43,7 +45,7 @@ class LocalUserDataSource @Inject constructor(
     suspend fun clear() {
         cache = null
         dataStore.updateData {
-            UserDataSerializer.defaultValue
+            serializer.defaultValue
         }
     }
 }
