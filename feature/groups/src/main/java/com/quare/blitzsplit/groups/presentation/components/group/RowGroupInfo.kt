@@ -1,6 +1,5 @@
 package com.quare.blitzsplit.groups.presentation.components.group
 
-import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
-import com.quare.blitzplit.component.pricechip.PricesChipsComponent
+import com.quare.blitzplit.component.chip.price.PricesChipsComponent
+import com.quare.blitzplit.component.chip.price.model.PriceChipsModel
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.groups.domain.model.MoreParticipantsModel
 import com.quare.blitzsplit.theme.BlitzSplitTheme
@@ -23,7 +22,7 @@ internal fun RowGroupInfo(
     name: String,
     profilePictures: List<String?>,
     moreParticipants: MoreParticipantsModel,
-    priceChipsModel: PriceChipsModel,
+    chipsComponent: @Composable () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Row(
@@ -47,10 +46,7 @@ internal fun RowGroupInfo(
                 moreParticipants = moreParticipants
             )
         }
-        PricesChipsComponent(
-            priceChipsModel = priceChipsModel,
-            orientation = Orientation.Vertical
-        )
+        chipsComponent()
     }
 }
 
@@ -69,10 +65,14 @@ fun RowGroupInfoPreview() {
                 shouldShow = true,
                 amount = 3
             ),
-            priceChipsModel = PriceChipsModel(
-                toPay = "R$ 9,90",
-                toReceive = "R$ 250,00",
-            )
+            chipsComponent = {
+                PricesChipsComponent(
+                    priceChipsModel = PriceChipsModel(
+                        toPay = "R$ 9,90",
+                        toReceive = "R$ 250,00",
+                    )
+                )
+            }
         )
     }
 }

@@ -1,4 +1,4 @@
-package com.quare.blitzplit.component.pricechip
+package com.quare.blitzplit.component.chip.price
 
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.layout.Arrangement
@@ -9,7 +9,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.quare.blitzplit.component.pricechip.model.PriceChipsModel
+import com.quare.blitzplit.component.chip.ChipComponent
+import com.quare.blitzplit.component.chip.price.model.PriceChipsModel
 import com.quare.blitzplit.component.spacer.HorizontalSpacer
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.theme.BlitzSplitTheme
@@ -21,12 +22,12 @@ fun PricesChipsComponent(
     priceChipsModel: PriceChipsModel,
     modifier: Modifier = Modifier,
     clicks: PriceChipsClicks? = null,
-    orientation: Orientation = Orientation.Horizontal,
+    orientation: Orientation = Orientation.Vertical,
 ) {
 
     val toPayComponent: @Composable () -> Unit = {
         priceChipsModel.toPay?.let {
-            PriceChipComponent(
+            ChipComponent(
                 value = it,
                 color = Orange500,
                 onClick = clicks?.toPay,
@@ -42,7 +43,7 @@ fun PricesChipsComponent(
 
     val toReceiveComponent: @Composable () -> Unit = {
         priceChipsModel.toReceive?.let {
-            PriceChipComponent(
+            ChipComponent(
                 value = it,
                 color = Green500,
                 onClick = clicks?.toReceive,
@@ -79,6 +80,7 @@ fun PricesChipsComponent(
 fun HorizontalPricesChipsComponentPreview() {
     BlitzSplitTheme {
         PricesChipsComponent(
+            orientation = Orientation.Horizontal,
             priceChipsModel = PriceChipsModel(
                 toPay = "R$ 19,80",
                 toReceive = "R$ 250,00",

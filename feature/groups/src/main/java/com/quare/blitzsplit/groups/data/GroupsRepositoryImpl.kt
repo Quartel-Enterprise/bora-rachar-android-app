@@ -11,7 +11,7 @@ class GroupsRepositoryImpl @Inject constructor(
     private val remoteDataSource: RemoteGroupsDataSource,
 ) : GroupsRepository {
 
-    override suspend fun getGroups(): Result<List<GroupsScreenItem.GroupItemModel>> =
+    override suspend fun getGroups(): Result<List<GroupsScreenItem>> =
         localDataSource.getGroups().getOrNull()?.let {
             Result.success(it)
         } ?: remoteDataSource.getGroups()

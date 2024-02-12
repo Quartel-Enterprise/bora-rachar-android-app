@@ -1,12 +1,12 @@
 package com.quare.blitzplit.component.picture
 
-import androidx.compose.foundation.clickable
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
+import com.quare.blitzplit.component.utils.onNullableClick
 
 @Composable
 fun Picture(
@@ -21,7 +21,7 @@ fun Picture(
 ) {
     AsyncImage(
         model = url,
-        modifier = modifier.modifyBasedOnClick(onPhotoClick),
+        modifier = modifier.onNullableClick(onPhotoClick),
         contentDescription = contentDescription,
         contentScale = contentScale,
         error = error,
@@ -29,10 +29,3 @@ fun Picture(
         onLoading = onLoading
     )
 }
-
-private fun Modifier.modifyBasedOnClick(
-    onPhotoClick: (() -> Unit)?,
-): Modifier = onPhotoClick?.let {
-    this.clickable(onClick = onPhotoClick)
-} ?: this
-

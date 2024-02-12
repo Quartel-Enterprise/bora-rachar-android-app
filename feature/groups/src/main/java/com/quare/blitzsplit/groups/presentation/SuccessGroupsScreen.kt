@@ -3,8 +3,10 @@ package com.quare.blitzsplit.groups.presentation
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.sp
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.presentation.components.CreateGroupButton
@@ -26,11 +28,18 @@ internal fun SuccessGroupsScreen(
                         modifier = Modifier.fillMaxWidth(),
                         onClick = createGroupClick
                     )
-                    is GroupsScreenItem.GroupItemModel -> GroupItemComponent(
+
+                    GroupsScreenItem.PaidOffGroupsTitle -> Text(
+                        text = "Grupos Quitados:",
+                        fontSize = 16.sp
+                    )
+
+                    is GroupsScreenItem.GroupItem -> GroupItemComponent(
                         modifier = Modifier.fillMaxWidth(),
                         data = itemList,
                         onClick = { onGroupClick(itemList.id) }
                     )
+
                 }
                 if (index.isNotLast(itemsSize)) {
                     VerticalSpacer()

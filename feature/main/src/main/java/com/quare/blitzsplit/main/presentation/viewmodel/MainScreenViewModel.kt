@@ -3,7 +3,7 @@ package com.quare.blitzsplit.main.presentation.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
-import com.quare.blitzplit.component.pricechip.PriceChipsClicks
+import com.quare.blitzplit.component.chip.price.PriceChipsClicks
 import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import com.quare.blitzsplit.main.domain.model.MainDialogType
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
