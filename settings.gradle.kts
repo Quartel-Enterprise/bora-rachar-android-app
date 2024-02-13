@@ -9,7 +9,7 @@ pluginManagement {
 rootProject.name = "BlitzSplit"
 
 private val featureModules = listOf("activities", "contacts", "login", "groups", "main")
-private val coreModules = listOf("theme", "navigation", "component", "user")
+private val coreModules = listOf("theme", "navigation", "component", "user", "utils")
 
 private val allModules = featureModules.map { "feature:$it" } +
         coreModules.map { "core:$it" } +

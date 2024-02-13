@@ -12,7 +12,7 @@ import kotlinx.coroutines.tasks.await
 
 class SignInResultProvider @Inject constructor(
     private val signInClient: SignInClient,
-    private val auth: FirebaseAuth
+    private val auth: FirebaseAuth,
 ) {
     suspend fun signInWithIntent(intent: Intent): SignInResult {
         val credential = signInClient.getSignInCredentialFromIntent(intent)
@@ -23,7 +23,8 @@ class SignInResultProvider @Inject constructor(
             SignInResult.Success(
                 userModel = UserModel(
                     id = authResult.user?.uid,
-                    profilePictureUrl = authResult.user?.photoUrl?.toString()
+                    profilePictureUrl = authResult.user?.photoUrl?.toString(),
+                    name = authResult.user?.displayName
                 )
             )
         } catch (exception: Exception) {

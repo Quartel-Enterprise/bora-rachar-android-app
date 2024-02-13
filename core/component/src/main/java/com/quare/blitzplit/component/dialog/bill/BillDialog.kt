@@ -52,7 +52,8 @@ fun BillDialogPreview() {
             mustShowRevertButton = true,
             textInfo = BillDialogColouredTextModel.Pay(
                 usersAmount = 3,
-                currencyText = "R$ 9,90"
+                currencyText = "R$ 9,90",
+                membersText = "grupo"
             ),
         )
     }

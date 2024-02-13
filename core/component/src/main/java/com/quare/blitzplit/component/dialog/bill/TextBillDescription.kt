@@ -41,7 +41,7 @@ private fun BillDialogColouredTextModel.toBillStyle() = buildAnnotatedString {
     )
     add(" $connectorText")
     add(" $usersAmount ")
-    add("\nmembros nas despesas do grupo")
+    add("\nmembros no $membersText")
 }
 
 private fun AnnotatedString.Builder.add(
@@ -64,12 +64,27 @@ private fun AnnotatedString.Builder.add(
 
 @Composable
 @Preview(showBackground = true)
-fun PreviewTextBillDescription() {
+fun MainTextBillDescriptionPreview() {
     BlitzSplitTheme {
         TextBillDescription(
             data = BillDialogColouredTextModel.Pay(
                 usersAmount = 3,
-                currencyText = "R$ 9,90"
+                currencyText = "R$ 9,90",
+                membersText = "total"
+            )
+        )
+    }
+}
+
+@Composable
+@Preview(showBackground = true)
+fun GroupsTextBillDescriptionPreview() {
+    BlitzSplitTheme {
+        TextBillDescription(
+            data = BillDialogColouredTextModel.Pay(
+                usersAmount = 3,
+                currencyText = "R$ 9,90",
+                membersText = "grupo"
             )
         )
     }
