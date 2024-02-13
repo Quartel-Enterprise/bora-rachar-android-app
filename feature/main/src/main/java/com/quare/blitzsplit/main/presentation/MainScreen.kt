@@ -38,11 +38,7 @@ fun MainScreen(
     val successMainAppBarState = mainAppBarState as? MainAppBarState.Success
 
     successMainAppBarState?.currentDialog?.let { currentDialog ->
-        MainScreenDialog(
-            dialogType = currentDialog,
-            onLogout = mainScreenViewModel::onClickLogout,
-            onDismiss = mainScreenViewModel::onDismissDialog
-        )
+        MainScreenDialog(currentDialog)
     }
 
     LaunchedEffect(key1 = Unit) {

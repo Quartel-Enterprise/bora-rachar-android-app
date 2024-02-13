@@ -19,14 +19,19 @@ class LocalUserDataSource @Inject constructor(
 
     suspend fun getUser(): UserModel? = cache ?: try {
         dataStore.data.map { userDto ->
-            UserModel(
-                id = userDto.id,
-                profilePictureUrl = userDto.profilePictureUrl
-            ).also { cache = it }
+            userDto
+                .toModel()
+                .also { cache = it }
         }.first()
     } catch (exception: NoSuchElementException) {
         null
     }
+
+    private fun UserDto.toModel(): UserModel = UserModel(
+        id = id,
+        profilePictureUrl = profilePictureUrl,
+        name = name
+    )
 
     suspend fun saveUser(userModel: UserModel) {
         cache = userModel

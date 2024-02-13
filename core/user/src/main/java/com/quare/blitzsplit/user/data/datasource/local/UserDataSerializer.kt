@@ -7,12 +7,13 @@ import java.io.OutputStream
 import kotlinx.serialization.SerializationException
 import kotlinx.serialization.json.Json
 
-object UserDataSerializer: Serializer<UserDto> {
+object UserDataSerializer : Serializer<UserDto> {
 
     override val defaultValue: UserDto
         get() = UserDto(
             id = null,
-            profilePictureUrl = null
+            profilePictureUrl = null,
+            name = null,
         )
 
     override suspend fun readFrom(input: InputStream): UserDto = try {

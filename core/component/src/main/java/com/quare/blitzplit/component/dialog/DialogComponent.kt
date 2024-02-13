@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 fun DialogComponent(
     title: String,
     confirmButtonText: String,
-    cancelButtonText: String,
+    cancelButtonText: String?,
     confirmButtonClick: () -> Unit,
     onDismiss: () -> Unit,
     middleContent: @Composable (() -> Unit),
@@ -26,12 +26,14 @@ fun DialogComponent(
             )
         },
         dismissButton = {
-            DialogTextButton(
-                text = cancelButtonText,
-                action = {
-                    cancelButtonClick?.invoke() ?: onDismiss()
-                }
-            )
+            cancelButtonText?.let {
+                DialogTextButton(
+                    text = it,
+                    action = {
+                        cancelButtonClick?.invoke() ?: onDismiss()
+                    }
+                )
+            }
         },
         onDismissRequest = onDismiss
     )

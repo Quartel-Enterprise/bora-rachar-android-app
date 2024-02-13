@@ -9,7 +9,8 @@ class FirebaseUserDataSource @Inject constructor(private val auth: FirebaseAuth)
     fun getUser(): UserModel? = auth.currentUser?.run {
         UserModel(
             id = uid,
-            profilePictureUrl = photoUrl?.toString()
+            profilePictureUrl = photoUrl?.toString(),
+            name = displayName
         )
     }
 }

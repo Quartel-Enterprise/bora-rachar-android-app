@@ -1,6 +1,6 @@
-package com.quare.blitzsplit.groups.data
+package com.quare.blitzplit.component.utils
 
-internal object StaticImages {
+object StaticImages {
     const val DOG =
         "https://s3-alpha-sig.figma.com/img/76c3/6ce3/8840bd6eefe91555da1eadedd4873d7b?Expires=1708300800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=ML2X38HeCq2kNTVM2s5VUEh06NcxO~GwhOwEtOEsvoP5XT4gK0oNXUyOWq2QPMG0PqPeOtJo4~xrcvYN-pLCp~zKOaXWyPLbgMMCh1kRAmeO-VkVYTBSeexGfJDCQ6TjLtyMKH5LlVdfYbiAFWx0kWbDbtJGqCHQr~kCwefMoCh1ZclfCOiS2d-UhBIKTRaIH74tF~Fz4Ej89MAFmTez5LmgIYNvn8dLYu~ShOLY1A1iADw868Hx4gbpsXd-hCDQPHKHEDfFuFc2lnSFfPyeV2iNJfZ3ClQ4bhlgFwKtcx~CPaIMkOW6ruiGsZt-b1ciW25pjD0uSn2T-yJlldzVCA__"
     const val MILEI =

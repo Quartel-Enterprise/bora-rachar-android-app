@@ -4,8 +4,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.chip.price.PriceChipsClicks
+import com.quare.blitzsplit.main.domain.model.DialogBillClicks
 import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import com.quare.blitzsplit.main.domain.model.MainDialogType
+import com.quare.blitzsplit.main.domain.usecase.GetInitialPayDialogState
+import com.quare.blitzsplit.main.domain.usecase.GetInitialReceiveDialogState
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -21,6 +24,8 @@ class MainScreenViewModel @Inject constructor(
     getMainAppBarModel: GetMainAppBarModelUseCase,
     private val auth: FirebaseAuth,
     private val clearLocalUser: ClearLocalUser,
+    private val getPayDialogState: GetInitialPayDialogState,
+    private val getReceiveDialogState: GetInitialReceiveDialogState,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<MainAppBarState> =
@@ -49,14 +54,15 @@ class MainScreenViewModel @Inject constructor(
     }
 
     fun onProfilePictureClick() {
-        updateCurrentDialog(MainDialogType.LOGOUT)
+        updateCurrentDialog(
+            MainDialogType.Logout(
+                onLogout = ::onClickLogout,
+                onDismiss = ::onDismissDialog
+            )
+        )
     }
 
-    fun onDismissDialog() {
-        updateCurrentDialog(null)
-    }
-
-    fun onClickLogout() {
+    private fun onClickLogout() {
         viewModelScope.launch {
             clearLocalUser()
             auth.signOut()
@@ -65,11 +71,45 @@ class MainScreenViewModel @Inject constructor(
     }
 
     private fun onClickToPay() {
-        updateCurrentDialog(MainDialogType.PAY)
+        updateCurrentDialog(
+            getPayDialogState(
+                DialogBillClicks(
+                    onBillButtonClick = {},
+                    onConfirmButtonClick = {
+                        // TOOD: update to paid off state
+                        onDismissDialog()
+                    },
+                    onRevertButtonClick = {
+                        // TOOD: revert dialog state
+                        onDismissDialog()
+                    },
+                    onDismissButtonClick = ::onDismissDialog
+                )
+            )
+        )
     }
 
     private fun onClickToReceive() {
-        updateCurrentDialog(MainDialogType.RECEIVE)
+        updateCurrentDialog(
+            getReceiveDialogState(
+                DialogBillClicks(
+                    onBillButtonClick = {},
+                    onConfirmButtonClick = {
+                        // TOOD: update to paid off state
+                        onDismissDialog()
+                    },
+                    onRevertButtonClick = {
+                        // TOOD: revert dialog state
+                        onDismissDialog()
+                    },
+                    onDismissButtonClick = ::onDismissDialog
+                )
+            )
+        )
+    }
+
+    private fun onDismissDialog() {
+        updateCurrentDialog(null)
     }
 
     private fun updateCurrentDialog(newDialog: MainDialogType?) {
