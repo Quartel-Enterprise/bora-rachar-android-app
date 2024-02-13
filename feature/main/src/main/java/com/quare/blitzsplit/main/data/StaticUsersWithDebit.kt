@@ -4,7 +4,6 @@ import com.quare.blitzplit.component.utils.StaticImages
 import com.quare.blitzsplit.main.domain.model.DebitType
 import com.quare.blitzsplit.main.domain.model.UserWithDebit
 import com.quare.blitzsplit.user.domain.model.UserModel
-import java.math.BigDecimal
 
 object StaticUsersWithDebit {
     val data: List<UserWithDebit> = mutableListOf(

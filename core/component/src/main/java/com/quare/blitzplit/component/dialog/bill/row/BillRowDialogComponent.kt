@@ -10,7 +10,6 @@ import com.quare.blitzplit.component.chip.bill.BillChipBackgroundColor
 import com.quare.blitzplit.component.dialog.bill.model.BillColor
 import com.quare.blitzplit.component.dialog.bill.row.model.BillDialogContentRowModel
 import com.quare.blitzsplit.theme.BlitzSplitTheme
-import com.quare.blitzsplit.theme.Red800
 
 @Composable
 fun BillRowDialogComponent(
