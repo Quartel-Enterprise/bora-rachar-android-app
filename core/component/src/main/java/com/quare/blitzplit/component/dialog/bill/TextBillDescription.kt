@@ -27,23 +27,22 @@ fun TextBillDescription(
 }
 
 @Composable
-private fun BillDialogColouredTextModel.toBillStyle() =
-    buildAnnotatedString {
-        val billColor = color.value
-        add("Você tem ")
-        add(
-            text = "$currencyText ",
-            color = billColor,
-            fontWeight = FontWeight.W500
-        )
-        add(
-            text = infoText,
-            color = billColor
-        )
-        add(" $connectorText")
-        add(" $usersAmount ")
-        add("\nmembros nas despesas do grupo")
-    }
+private fun BillDialogColouredTextModel.toBillStyle() = buildAnnotatedString {
+    val billColor = color.value
+    add("Você tem ")
+    add(
+        text = "$currencyText ",
+        color = billColor,
+        fontWeight = FontWeight.W500
+    )
+    add(
+        text = infoText,
+        color = billColor
+    )
+    add(" $connectorText")
+    add(" $usersAmount ")
+    add("\nmembros nas despesas do grupo")
+}
 
 private fun AnnotatedString.Builder.add(
     text: String,

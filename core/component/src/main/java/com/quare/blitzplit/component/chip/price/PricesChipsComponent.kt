@@ -9,7 +9,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.quare.blitzplit.component.chip.ChipComponent
 import com.quare.blitzplit.component.chip.price.model.PriceChipsModel
 import com.quare.blitzplit.component.spacer.HorizontalSpacer
 import com.quare.blitzplit.component.spacer.VerticalSpacer
@@ -27,7 +26,7 @@ fun PricesChipsComponent(
 
     val toPayComponent: @Composable () -> Unit = {
         priceChipsModel.toPay?.let {
-            ChipComponent(
+            PriceChipComponent(
                 value = it,
                 color = Orange500,
                 onClick = clicks?.toPay,
@@ -43,7 +42,7 @@ fun PricesChipsComponent(
 
     val toReceiveComponent: @Composable () -> Unit = {
         priceChipsModel.toReceive?.let {
-            ChipComponent(
+            PriceChipComponent(
                 value = it,
                 color = Green500,
                 onClick = clicks?.toReceive,
