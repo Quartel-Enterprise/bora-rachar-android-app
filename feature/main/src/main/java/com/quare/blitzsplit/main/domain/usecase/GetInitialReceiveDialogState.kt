@@ -15,7 +15,7 @@ class GetInitialReceiveDialogState @Inject constructor(
         title = "A receber",
         mustShowRevertButton = true,
         items = getBillDialogContentRowModel(
-            buttonText = "Receber",
+            buttonText = "Recebi",
             amountTextColor = BillColor.RECEIVE,
             onBillButtonClick = clicks.onBillButtonClick,
             debitType = DebitType.RECEIVE

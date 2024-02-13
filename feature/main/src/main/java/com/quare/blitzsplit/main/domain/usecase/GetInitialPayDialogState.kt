@@ -14,7 +14,7 @@ class GetInitialPayDialogState @Inject constructor(
         title = "A pagar",
         mustShowRevertButton = true,
         items = getBillDialogContentRowModel(
-            buttonText = "Pagar",
+            buttonText = "Paguei",
             amountTextColor = BillColor.PAY,
             onBillButtonClick = clicks.onBillButtonClick,
             debitType = DebitType.PAY
