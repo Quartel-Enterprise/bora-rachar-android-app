@@ -61,6 +61,8 @@ dependencies {
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.hiltNavigationCompose)
     implementation(libs.material3)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 
     // Hilt
     implementation(libs.daggerHilt)
@@ -71,6 +73,4 @@ dependencies {
     implementation(libs.firebase.auth.ktx)
     implementation(libs.play.services.auth)
 
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
 }

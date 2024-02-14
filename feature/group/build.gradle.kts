@@ -48,7 +48,6 @@ dependencies {
 
     // Compose
     implementation(platform(libs.composeBom))
-    implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
@@ -56,11 +55,11 @@ dependencies {
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.hiltNavigationCompose)
     implementation(libs.material3)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
 
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
 }

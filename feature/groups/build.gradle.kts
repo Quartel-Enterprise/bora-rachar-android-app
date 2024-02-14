@@ -55,11 +55,11 @@ dependencies {
     implementation(libs.viewModelKtx)
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.material3)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
 
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
 }

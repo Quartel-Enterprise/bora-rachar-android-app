@@ -56,6 +56,8 @@ dependencies {
     implementation(libs.viewModelKtx)
     implementation(libs.hiltNavigationCompose)
     implementation(libs.lifecycleRuntimeCompose)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 
     // Firebase
     implementation(platform(libs.firebaseBom))
@@ -66,6 +68,4 @@ dependencies {
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
 
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
 }
