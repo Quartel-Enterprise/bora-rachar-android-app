@@ -1,23 +1,22 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.androidApplication)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.hiltAndroid)
     kotlin("kapt")
 }
 
 android {
     namespace = "com.quare.blitzsplit"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
         applicationId = "com.quare.blitzsplit"
-        minSdk = 24
-        targetSdk = 33
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = libs.versions.minSdk.get().toInt()
+        targetSdk = libs.versions.targetSdk.get().toInt()
+        versionCode = libs.versions.code.get().toInt()
+        versionName = libs.versions.name.get()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -33,13 +32,13 @@ android {
         }
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
     packaging {
         resources {
@@ -53,27 +52,21 @@ android {
 }
 
 dependencies {
-    // Modules
-    val modules = listOf("feature:login", "core:theme", "core:navigation")
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementFeature(Module.Feature.Login)
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Navigation
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
-        loading progress indicator with material 3 (remove when it's fixed)
-        https://stackoverflow.com/a/77907893/11111289
-    */
-    implementation(libs.navigation.compose)
+    implementation(libs.material3)
+    implementation(libs.navigationCompose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
-
-    // Firebase
-    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)

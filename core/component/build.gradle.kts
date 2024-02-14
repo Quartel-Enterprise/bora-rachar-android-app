@@ -6,22 +6,21 @@ plugins {
 
 android {
     namespace = "com.quare.blitzsplit.component"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdk.get().toInt()
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
     buildTypes {
         release {
@@ -39,17 +38,17 @@ android {
 }
 
 dependencies {
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Utils,
+    )
+
     // Compose
-    implementation(project(":core:theme"))
-    implementation(project(":core:utils"))
     implementation(platform(libs.composeBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
-        loading progress indicator with material 3 (remove when it's fixed)
-        https://stackoverflow.com/a/77907893/11111289
-    */
+    implementation(libs.material3)
     implementation(libs.coil)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)

@@ -7,22 +7,20 @@ plugins {
 
 android {
     namespace = "com.quare.blitzsplit.navigation"
-    compileSdk = 34
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = libs.versions.minSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
     buildTypes {
         release {
@@ -41,17 +39,16 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf(
-        "feature:login",
-        "feature:groups",
-        "feature:main",
-        "core:theme",
-        "core:component",
-        "core:user"
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Component,
+        Module.Core.User
     )
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementFeature(
+        Module.Feature.Login,
+        Module.Feature.Groups,
+        Module.Feature.Main,
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
@@ -60,19 +57,12 @@ dependencies {
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
-        loading progress indicator with material 3 (remove when it's fixed)
-        https://stackoverflow.com/a/77907893/11111289
-    */
-    implementation(libs.navigation.compose)
+    implementation(libs.material3)
+    implementation(libs.navigationCompose)
     implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.hiltNavigationCompose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
-
-    // Firebase
-    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)

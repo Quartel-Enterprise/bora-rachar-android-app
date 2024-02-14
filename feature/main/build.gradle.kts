@@ -1,19 +1,17 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.hiltAndroid)
     kotlin("kapt")
 }
 
 android {
     namespace = "com.quare.blitzsplit.main"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        minSdk = libs.versions.minSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -31,46 +29,48 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.3"
+        kotlinCompilerExtensionVersion = libs.versions.kotlinCompilerExtension.get()
     }
 }
 
 dependencies {
     // Modules
-    val modules = listOf(
-        "core:component", "core:theme", "core:user",
-        "feature:login", "feature:groups", "feature:activities", "feature:contacts"
+    implementCore(
+        Module.Core.Component,
+        Module.Core.Theme,
+        Module.Core.User
     )
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementFeature(
+        Module.Feature.Groups,
+        Module.Feature.Activities,
+        Module.Feature.Contacts
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
-    implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.hiltNavigationCompose)
-    implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
-        loading progress indicator with material 3 (remove when it's fixed)
-        https://stackoverflow.com/a/77907893/11111289
-    */
+    implementation(libs.material3)
+    debugImplementation(libs.uiTooling)
+    debugImplementation(libs.uiTestManifest)
 
     // Hilt
     implementation(libs.daggerHilt)
     kapt(libs.daggerHiltCompiler)
 
-    debugImplementation(libs.uiTooling)
-    debugImplementation(libs.uiTestManifest)
+    // Firebase
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
+
 }

@@ -1,18 +1,18 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.hiltAndroid)
     id("org.jetbrains.kotlin.plugin.serialization")
     kotlin("kapt")
 }
 
 android {
     namespace = "com.quare.blitzsplit.user"
-    compileSdk = 33
+    compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 24
+        minSdk = libs.versions.minSdk.get().toInt()
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -30,16 +30,16 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
 }
 
 dependencies {
     // Data Store
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.datastorePreferences)
 
-    // Kotlin utils
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    // Kotlin serializer
+    implementation(libs.kotlinSerializationJson)
 
     // Firebase
     implementation(libs.play.services.auth)
