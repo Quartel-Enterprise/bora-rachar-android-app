@@ -42,22 +42,27 @@ android {
 }
 
 dependencies {
+    // Modules
+    implementCore(
+        Module.Core.Component,
+        Module.Core.Theme,
+        Module.Core.User
+    )
     // Compose
-    implementation(project(":core:theme"))
-    implementation(project(":core:component"))
-    implementation(project(":core:user"))
     implementation(platform(libs.composeBom))
-    implementation(platform(libs.firebaseBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
     implementation(libs.activityCompose)
-    implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)
     implementation(libs.hiltNavigationCompose)
     implementation(libs.lifecycleRuntimeCompose)
+
+    // Firebase
+    implementation(platform(libs.firebaseBom))
+    implementation(libs.firebase.auth.ktx)
+    implementation(libs.play.services.auth)
 
     // Hilt
     implementation(libs.daggerHilt)

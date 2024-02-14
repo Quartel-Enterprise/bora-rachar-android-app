@@ -31,7 +31,7 @@ uiToolingPreview = { group = "androidx.compose.ui", name = "ui-tooling-preview" 
 uiTestManifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
 material3 = { group = "androidx.compose.material3", name = "material3" }
 activityCompose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
+navigationCompose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 
 # Coil
 coil = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
@@ -50,11 +50,11 @@ firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.re
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
 
-# Datastore
+# Other
 datastorePreferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
-
-#Kotlin Serialization
+kotlinSerialization = { group = "org.jetbrains.kotlin", name = "kotlin-serialization", version.ref = "kotlin" }
 kotlinSerializationJson = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerializationJson" }
+googleServices = { group = "com.google.gms", name = "google-services", version.ref = "google-services" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "android-gradle-plugin" }

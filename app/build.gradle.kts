@@ -52,11 +52,11 @@ android {
 }
 
 dependencies {
-    // Modules
-    val modules = listOf("feature:login", "core:theme", "core:navigation")
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementFeature(Module.Feature.Login)
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Navigation
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
@@ -64,12 +64,9 @@ dependencies {
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
-    implementation(libs.navigation.compose)
+    implementation(libs.navigationCompose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
-
-    // Firebase
-    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)

@@ -41,17 +41,16 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf(
-        "feature:login",
-        "feature:groups",
-        "feature:main",
-        "core:theme",
-        "core:component",
-        "core:user"
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Component,
+        Module.Core.User
     )
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementFeature(
+        Module.Feature.Login,
+        Module.Feature.Groups,
+        Module.Feature.Main,
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
@@ -61,15 +60,11 @@ dependencies {
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
     implementation(libs.material3)
-    implementation(libs.navigation.compose)
+    implementation(libs.navigationCompose)
     implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.hiltNavigationCompose)
     debugImplementation(libs.uiTooling)
     debugImplementation(libs.uiTestManifest)
-
-    // Firebase
-    implementation(platform(libs.firebaseBom))
 
     // Hilt
     implementation(libs.daggerHilt)

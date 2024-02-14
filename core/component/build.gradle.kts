@@ -39,9 +39,12 @@ android {
 }
 
 dependencies {
+    implementCore(
+        Module.Core.Theme,
+        Module.Core.Utils,
+    )
+
     // Compose
-    implementation(project(":core:theme"))
-    implementation(project(":core:utils"))
     implementation(platform(libs.composeBom))
     implementation(libs.ui)
     implementation(libs.uiGraphics)

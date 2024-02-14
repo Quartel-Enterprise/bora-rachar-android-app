@@ -43,10 +43,10 @@ android {
 
 dependencies {
     // Modules
-    val modules = listOf("core:component", "core:theme")
-    modules.forEach { module ->
-        implementation(project(":$module"))
-    }
+    implementCore(
+        Module.Core.Component,
+        Module.Core.Theme
+    )
 
     // Compose
     implementation(platform(libs.composeBom))
@@ -54,8 +54,6 @@ dependencies {
     implementation(libs.ui)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation(libs.play.services.auth)
-    implementation(libs.firebase.auth.ktx)
     implementation(libs.viewModelKtx)
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.hiltNavigationCompose)
