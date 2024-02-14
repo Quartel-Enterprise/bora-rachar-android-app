@@ -36,10 +36,10 @@ android {
 
 dependencies {
     // Data Store
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation(libs.datastorePreferences)
 
-    // Kotlin utils
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+    // Kotlin serializer
+    implementation(libs.kotlinSerializationJson)
 
     // Firebase
     implementation(libs.play.services.auth)

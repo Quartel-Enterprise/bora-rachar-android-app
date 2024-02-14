@@ -6,6 +6,7 @@ targetSdk = "33"
 minSdk = "24"
 jvmTarget = "17"
 kotlinCompilerExtension = "1.5.3"
+datastore = "1.0.0"
 hilt = "2.50"
 compose-bom = "2024.02.00"
 activity-compose = "1.8.2"
@@ -15,9 +16,10 @@ kotlin = "1.9.10"
 google-services = "4.4.0"
 play-services-auth = "20.7.0"
 firebase-auth-ktx = "22.3.1"
-navigation-compose = "2.7.6"
+navigation-compose = "2.7.7"
 hilt-navigation-compose = "1.1.0"
 coil = "2.5.0"
+kotlinSerializationJson = "1.6.2"
 
 [libraries]
 # Compose
@@ -47,6 +49,12 @@ hiltNavigationCompose = { group = "androidx.hilt", name = "hilt-navigation-compo
 firebaseBom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebase-bom" }
 play-services-auth = { group = "com.google.android.gms", name = "play-services-auth", version.ref = "play-services-auth" }
 firebase-auth-ktx = { group = "com.google.firebase", name = "firebase-auth-ktx", version.ref = "firebase-auth-ktx" }
+
+# Datastore
+datastorePreferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
+
+#Kotlin Serialization
+kotlinSerializationJson = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinSerializationJson" }
 
 [plugins]
 androidLibrary = { id = "com.android.library", version.ref = "android-gradle-plugin" }

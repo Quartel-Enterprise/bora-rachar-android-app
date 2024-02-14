@@ -60,10 +60,7 @@ dependencies {
     implementation(libs.lifecycleRuntimeCompose)
     implementation(libs.uiGraphics)
     implementation(libs.uiToolingPreview)
-    implementation("androidx.compose.material3:material3-android:1.2.0-rc01") /* Temporary solution for
-        loading progress indicator with material 3 (remove when it's fixed)
-        https://stackoverflow.com/a/77907893/11111289
-    */
+    implementation(libs.material3)
     implementation(libs.navigation.compose)
     implementation(libs.play.services.auth)
     implementation(libs.firebase.auth.ktx)
