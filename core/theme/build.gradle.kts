@@ -13,7 +13,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
     kotlinOptions {
-        jvmTarget =  libs.versions.jvmTarget.get()
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     buildFeatures {
         compose = true

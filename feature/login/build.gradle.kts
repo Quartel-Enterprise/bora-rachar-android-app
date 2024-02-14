@@ -1,8 +1,8 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    id("com.google.gms.google-services")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.googleServices)
+    alias(libs.plugins.hiltAndroid)
     kotlin("kapt")
 }
 
