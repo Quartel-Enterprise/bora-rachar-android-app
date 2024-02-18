@@ -38,6 +38,9 @@ class LoginViewModel @Inject constructor(
             intentSenderProvider.signIn()?.let { intentSender ->
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
                 emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
+            } ?: run {
+                _state.update { it.copy(isLoading = false) }
+                emit(LoginUiAction.ShowError(message = "Error to proceed with login"))
             }
         }
     }
