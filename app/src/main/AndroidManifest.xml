@@ -18,6 +18,7 @@
             android:value="ca-app-pub-3940256099942544~3347511713"/>
         <activity
             android:name="com.quare.blitzsplit.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.BlitzSplit">
