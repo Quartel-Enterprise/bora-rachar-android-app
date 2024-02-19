@@ -46,6 +46,7 @@ dependencies {
     )
     implementFeature(
         Module.Feature.Login,
+        Module.Feature.Group,
         Module.Feature.Groups,
         Module.Feature.Main,
     )

@@ -4,4 +4,5 @@ internal object Route {
     const val LOADING_NAVIGATION = "loading navigation"
     const val LOGIN = "login"
     const val MAIN = "main"
+    const val GROUP = "group"
 }
