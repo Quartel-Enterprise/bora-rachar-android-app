@@ -1,7 +1,9 @@
 package com.quare.blitzsplit.navigation.presentation
 
+import presentaiton.GroupScreen
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -12,8 +14,10 @@ import com.quare.blitzsplit.login.presentation.LoginScreen
 import com.quare.blitzsplit.main.domain.model.MainScreenCallbacks
 import com.quare.blitzsplit.main.presentation.MainScreen
 import com.quare.blitzsplit.navigation.domain.model.Route
+import com.quare.blitzsplit.navigation.presentation.viewmodel.NavigationAction
 import com.quare.blitzsplit.navigation.presentation.viewmodel.NavigationViewModel
 import com.quare.blitzsplit.navigation.utils.navigateDroppingAll
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun NavigationComponent(
@@ -21,6 +25,14 @@ fun NavigationComponent(
 ) {
     val navController = rememberNavController()
     val state by viewModel.state.collectAsState()
+
+    LaunchedEffect(key1 = Unit) {
+        viewModel.action.collectLatest { action ->
+            when (action) {
+                is NavigationAction.NavigateToGroupDetails -> navController.navigate(action.route)
+            }
+        }
+    }
 
     NavHost(
         navController = navController,
@@ -45,9 +57,13 @@ fun NavigationComponent(
                     backToLogin = { navController.navigateDroppingAll(Route.LOGIN) },
                     splitBillClick = {},
                     createGroupClick = {},
-                    onGroupClick = {}
+                    onGroupClick = viewModel::onGroupClick
                 )
             )
+        }
+
+        composable("${Route.GROUP}/{groupId}") {
+            GroupScreen()
         }
     }
 }
