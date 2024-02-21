@@ -12,6 +12,7 @@ import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.presentation.components.CreateGroupButton
 import com.quare.blitzsplit.groups.presentation.components.group.GroupItemComponent
 import com.quare.blitzsplit.utils.isLastIndex
+import rememberForeverLazyListState
 
 @Composable
 internal fun SuccessGroupsScreen(
@@ -20,7 +21,10 @@ internal fun SuccessGroupsScreen(
     createGroupClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    LazyColumn(modifier = modifier.fillMaxSize()) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        state = rememberForeverLazyListState(key = "Success Groups Screen")
+    ) {
         items.forEachIndexed { index, itemList ->
             item {
                 when (itemList) {
