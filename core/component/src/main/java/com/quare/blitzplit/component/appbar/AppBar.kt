@@ -24,9 +24,9 @@ import com.quare.blitzsplit.theme.BlitzSplitTheme
 @Composable
 fun AppBar(
     title: String,
-    menuIcon: ImageVector,
-    menuDescription: String,
-    menuIconClick: () -> Unit,
+    actionIcon: ImageVector,
+    actionIconDescription: String,
+    actionIconClick: () -> Unit,
     backClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -44,15 +44,15 @@ fun AppBar(
             IconButton(onClick = backClick) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Default.ArrowBack,
-                    contentDescription = menuDescription,
+                    contentDescription = actionIconDescription,
                 )
             }
         },
         actions = {
-            IconButton(onClick = menuIconClick) {
+            IconButton(onClick = actionIconClick) {
                 Icon(
-                    imageVector = menuIcon,
-                    contentDescription = menuDescription,
+                    imageVector = actionIcon,
+                    contentDescription = actionIconDescription,
                 )
             }
         }
@@ -78,9 +78,9 @@ fun AppBarPreview() {
     BlitzSplitTheme {
         AppBar(
             title = "Quartel Otaku",
-            menuIcon = Icons.Default.MoreVert,
-            menuDescription = "Menu",
-            menuIconClick = {},
+            actionIcon = Icons.Default.MoreVert,
+            actionIconDescription = "Menu",
+            actionIconClick = {},
             backClick = { }
         )
     }
