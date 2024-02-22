@@ -6,7 +6,7 @@ import androidx.compose.ui.Modifier
 import com.quare.blitzplit.component.picture.Picture
 
 @Composable
-fun GroupItemImage(
+fun GroupCardItemImage(
     name: String,
     imageUrl: String?,
     modifier: Modifier = Modifier,

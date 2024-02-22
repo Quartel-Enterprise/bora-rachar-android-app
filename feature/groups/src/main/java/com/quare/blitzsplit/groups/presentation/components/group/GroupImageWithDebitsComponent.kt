@@ -18,7 +18,7 @@ fun GroupImageWithDebitsComponent(
     modifier: Modifier = Modifier,
 ) {
     Box(modifier = modifier) {
-        GroupItemImage(
+        GroupCardItemImage(
             modifier = Modifier.size(imageSize),
             name = name,
             imageUrl = imageUrl

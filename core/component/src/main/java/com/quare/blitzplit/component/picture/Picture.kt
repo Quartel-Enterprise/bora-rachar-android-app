@@ -17,7 +17,8 @@ fun Picture(
     error: Painter? = null,
     placeholder: Painter? = null,
     onLoading: ((AsyncImagePainter.State.Loading) -> Unit)? = null,
-    contentDescription: String
+    onError: ((AsyncImagePainter.State.Error) -> Unit)? = null,
+    contentDescription: String?,
 ) {
     AsyncImage(
         model = url,
@@ -26,6 +27,7 @@ fun Picture(
         contentScale = contentScale,
         error = error,
         placeholder = placeholder,
-        onLoading = onLoading
+        onLoading = onLoading,
+        onError = onError,
     )
 }
