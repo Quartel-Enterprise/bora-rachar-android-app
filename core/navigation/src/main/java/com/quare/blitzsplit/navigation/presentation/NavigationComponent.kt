@@ -63,7 +63,9 @@ fun NavigationComponent(
         }
 
         composable("${Route.GROUP}/{groupId}") {
-            GroupScreen()
+            GroupScreen(
+                onBack = navController::popBackStack
+            )
         }
     }
 }
