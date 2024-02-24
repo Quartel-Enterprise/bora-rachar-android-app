@@ -7,7 +7,7 @@ import com.quare.blitzsplit.main.domain.model.ModalBillClicks
 import com.quare.blitzsplit.main.domain.model.MainModalType
 import javax.inject.Inject
 
-class GetInitialPayModalState @Inject constructor(
+class GetInitialPayModalStateUseCase @Inject constructor(
     private val getBillDialogContentRowModel: GetBillDialogContentRowModel,
 ) {
     operator fun invoke(clicks: ModalBillClicks): MainModalType.Bill = MainModalType.Bill(
