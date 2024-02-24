@@ -4,9 +4,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.chip.price.PriceChipsClicks
-import com.quare.blitzsplit.main.domain.model.DialogBillClicks
+import com.quare.blitzsplit.main.domain.model.ModalBillClicks
 import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
-import com.quare.blitzsplit.main.domain.model.MainDialogType
+import com.quare.blitzsplit.main.domain.model.MainModalType
 import com.quare.blitzsplit.main.domain.usecase.GetInitialPayDialogState
 import com.quare.blitzsplit.main.domain.usecase.GetInitialReceiveDialogState
 import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
@@ -25,7 +25,7 @@ class MainScreenViewModel @Inject constructor(
     private val auth: FirebaseAuth,
     private val clearLocalUser: ClearLocalUser,
     private val getPayDialogState: GetInitialPayDialogState,
-    private val getReceiveDialogState: GetInitialReceiveDialogState,
+    private val getReceiveModalState: GetInitialReceiveDialogState,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<MainAppBarState> =
@@ -54,8 +54,8 @@ class MainScreenViewModel @Inject constructor(
     }
 
     fun onProfilePictureClick() {
-        updateCurrentDialog(
-            MainDialogType.Logout(
+        updateCurrentModal(
+            MainModalType.Logout(
                 onLogout = ::onClickLogout,
                 onDismiss = ::onDismissDialog
             )
@@ -71,9 +71,9 @@ class MainScreenViewModel @Inject constructor(
     }
 
     private fun onClickToPay() {
-        updateCurrentDialog(
+        updateCurrentModal(
             getPayDialogState(
-                DialogBillClicks(
+                ModalBillClicks(
                     onBillButtonClick = {},
                     onConfirmButtonClick = {
                         // TOOD: update to paid off state
@@ -90,9 +90,9 @@ class MainScreenViewModel @Inject constructor(
     }
 
     private fun onClickToReceive() {
-        updateCurrentDialog(
-            getReceiveDialogState(
-                DialogBillClicks(
+        updateCurrentModal(
+            getReceiveModalState(
+                ModalBillClicks(
                     onBillButtonClick = {},
                     onConfirmButtonClick = {
                         // TOOD: update to paid off state
@@ -109,10 +109,10 @@ class MainScreenViewModel @Inject constructor(
     }
 
     private fun onDismissDialog() {
-        updateCurrentDialog(null)
+        updateCurrentModal(null)
     }
 
-    private fun updateCurrentDialog(newDialog: MainDialogType?) {
+    private fun updateCurrentModal(newDialog: MainModalType?) {
         _state.update { successUiState.copy(currentDialog = newDialog) }
     }
 }

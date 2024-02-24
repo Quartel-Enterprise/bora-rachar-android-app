@@ -40,8 +40,7 @@ private fun BillDialogColouredTextModel.toBillStyle() = buildAnnotatedString {
         color = billColor
     )
     add(" $connectorText")
-    add(" $usersAmount ")
-    add("\nmembros no $membersText")
+    add(" $usersAmount membros no $membersText")
 }
 
 private fun AnnotatedString.Builder.add(
