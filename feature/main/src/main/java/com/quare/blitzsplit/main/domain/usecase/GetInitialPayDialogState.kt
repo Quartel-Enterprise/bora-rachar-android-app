@@ -3,14 +3,14 @@ package com.quare.blitzsplit.main.domain.usecase
 import com.quare.blitzplit.component.dialog.bill.model.BillColor
 import com.quare.blitzplit.component.dialog.bill.model.BillDialogColouredTextModel
 import com.quare.blitzsplit.main.domain.model.DebitType
-import com.quare.blitzsplit.main.domain.model.DialogBillClicks
-import com.quare.blitzsplit.main.domain.model.MainDialogType
+import com.quare.blitzsplit.main.domain.model.ModalBillClicks
+import com.quare.blitzsplit.main.domain.model.MainModalType
 import javax.inject.Inject
 
 class GetInitialPayDialogState @Inject constructor(
     private val getBillDialogContentRowModel: GetBillDialogContentRowModel,
 ) {
-    operator fun invoke(clicks: DialogBillClicks): MainDialogType.Bill = MainDialogType.Bill(
+    operator fun invoke(clicks: ModalBillClicks): MainModalType.Bill = MainModalType.Bill(
         title = "A pagar",
         mustShowRevertButton = true,
         items = getBillDialogContentRowModel(
