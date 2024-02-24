@@ -47,7 +47,7 @@ fun GroupsHeaderPricesChipComponentPreview() {
     BlitzSplitTheme {
         GroupsHeaderPricesChipComponent(
             receiveChip = HeaderPriceModel.Receive(
-                text = "Receber R$ 250",
+                text = "Receber R$ 250 de Pierre V.",
                 onClick = {}
             ),
             payChip = HeaderPriceModel.Pay(
