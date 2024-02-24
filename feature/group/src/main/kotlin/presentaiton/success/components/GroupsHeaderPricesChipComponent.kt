@@ -2,6 +2,7 @@ package presentaiton.success.components
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -20,8 +21,10 @@ fun GroupsHeaderPricesChipComponent(
         modifier = modifier,
         verticalArrangement = Arrangement.Center
     ) {
+        val buttonModifier = Modifier.fillMaxWidth()
         payChip?.let {
             GroupHeaderPriceButton(
+                modifier = buttonModifier,
                 text = it.text,
                 onClick = it.onClick,
                 color = Orange500
@@ -29,6 +32,7 @@ fun GroupsHeaderPricesChipComponent(
         }
         receiveChip?.let {
             GroupHeaderPriceButton(
+                modifier = buttonModifier,
                 text = it.text,
                 onClick = it.onClick,
                 color = Green500
@@ -43,7 +47,7 @@ fun GroupsHeaderPricesChipComponentPreview() {
     BlitzSplitTheme {
         GroupsHeaderPricesChipComponent(
             receiveChip = HeaderPriceModel.Receive(
-                text = "Receber R$ 250 de Pierre V.",
+                text = "Receber R$ 250",
                 onClick = {}
             ),
             payChip = HeaderPriceModel.Pay(
