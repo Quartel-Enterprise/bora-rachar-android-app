@@ -59,12 +59,12 @@ fun SuccessGroupScreenContentPreview() {
                 header = HeaderDetailsModel(
                     photoUrl = StaticImages.DOG,
                     receiveChip = HeaderPriceModel.Receive(
-                        value = "R$ 9.90",
-                        toDebit = "a 3 membros"
+                        text = "Pagar R$ 9.90 a 3 membros",
+                        onClick = {}
                     ),
                     payChip = HeaderPriceModel.Pay(
-                        value = "R$ 250",
-                        toDebit = "de Pierre V."
+                        text = "Receber R$ 250 de Pierre V.",
+                        onClick = {}
                     )
                 )
             )

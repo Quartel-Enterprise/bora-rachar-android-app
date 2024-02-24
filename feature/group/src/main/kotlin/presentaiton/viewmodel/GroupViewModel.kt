@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.quare.blitzplit.component.chip.price.PriceChipsClicks
 import dagger.hilt.android.lifecycle.HiltViewModel
 import domain.usecase.GetGroupDetailsUseCase
 import javax.inject.Inject
@@ -28,7 +29,12 @@ class GroupViewModel @Inject constructor(
         viewModelScope.launch {
             _uiState.update {
                 GroupUiState.Success(
-                    model = getGroupDetails(),
+                    model = getGroupDetails(
+                        clicks = PriceChipsClicks(
+                            toPay = {},
+                            toReceive = {}
+                        )
+                    ),
                     currentDialog = null
                 )
             }
