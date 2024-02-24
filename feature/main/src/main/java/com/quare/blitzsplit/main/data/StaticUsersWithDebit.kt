@@ -9,26 +9,6 @@ object StaticUsersWithDebit {
     val data: List<UserWithDebit> = mutableListOf(
         arrighi(),
         thiago(),
-        /*thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),
-        thiago(),*/
         fabricio(),
     ).apply {
         addAll(
