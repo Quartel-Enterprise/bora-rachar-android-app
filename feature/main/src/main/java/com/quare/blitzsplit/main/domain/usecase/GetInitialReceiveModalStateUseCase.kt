@@ -7,7 +7,7 @@ import com.quare.blitzsplit.main.domain.model.ModalBillClicks
 import com.quare.blitzsplit.main.domain.model.MainModalType
 import javax.inject.Inject
 
-class GetInitialReceiveDialogState @Inject constructor(
+class GetInitialReceiveModalStateUseCase @Inject constructor(
     private val getBillDialogContentRowModel: GetBillDialogContentRowModel,
 ) {
 

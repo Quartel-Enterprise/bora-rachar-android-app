@@ -2,14 +2,10 @@ package com.quare.blitzsplit.main.presentation.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.google.firebase.auth.FirebaseAuth
 import com.quare.blitzplit.component.chip.price.PriceChipsClicks
 import com.quare.blitzsplit.main.domain.model.ModalBillClicks
-import com.quare.blitzsplit.main.domain.usecase.GetMainAppBarModelUseCase
 import com.quare.blitzsplit.main.domain.model.MainModalType
-import com.quare.blitzsplit.main.domain.usecase.GetInitialPayDialogState
-import com.quare.blitzsplit.main.domain.usecase.GetInitialReceiveDialogState
-import com.quare.blitzsplit.user.domain.usecase.ClearLocalUser
+import com.quare.blitzsplit.main.domain.model.MainScreenUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -21,11 +17,7 @@ import kotlinx.coroutines.launch
 
 @HiltViewModel
 class MainScreenViewModel @Inject constructor(
-    getMainAppBarModel: GetMainAppBarModelUseCase,
-    private val auth: FirebaseAuth,
-    private val clearLocalUser: ClearLocalUser,
-    private val getPayDialogState: GetInitialPayDialogState,
-    private val getReceiveModalState: GetInitialReceiveDialogState,
+    private val useCases: MainScreenUseCases,
 ) : ViewModel() {
 
     private val _state: MutableStateFlow<MainAppBarState> =
@@ -42,7 +34,7 @@ class MainScreenViewModel @Inject constructor(
         viewModelScope.launch {
             _state.update {
                 MainAppBarState.Success(
-                    mainAppBarModel = getMainAppBarModel(),
+                    mainAppBarModel = useCases.getMainAppBarModel(),
                     priceChipsClicks = PriceChipsClicks(
                         toPay = ::onClickToPay,
                         toReceive = ::onClickToReceive,
@@ -64,15 +56,14 @@ class MainScreenViewModel @Inject constructor(
 
     private fun onClickLogout() {
         viewModelScope.launch {
-            clearLocalUser()
-            auth.signOut()
+            useCases.logout()
             _action.emit(MainScreenAction.BACK_TO_LOGIN)
         }
     }
 
     private fun onClickToPay() {
         updateCurrentModal(
-            getPayDialogState(
+            useCases.getPayModalState(
                 ModalBillClicks(
                     onBillButtonClick = {},
                     onConfirmButtonClick = {
@@ -91,7 +82,7 @@ class MainScreenViewModel @Inject constructor(
 
     private fun onClickToReceive() {
         updateCurrentModal(
-            getReceiveModalState(
+            useCases.getReceiveModalState(
                 ModalBillClicks(
                     onBillButtonClick = {},
                     onConfirmButtonClick = {
