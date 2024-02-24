@@ -2,16 +2,16 @@ package domain.model
 
 sealed interface HeaderPriceModel {
 
-    val value: String
-    val toDebit: String
+    val text: String
+    val onClick: () -> Unit
 
     data class Pay(
-        override val value: String,
-        override val toDebit: String,
+        override val text: String,
+        override val onClick: () -> Unit,
     ) : HeaderPriceModel
 
     data class Receive(
-        override val value: String,
-        override val toDebit: String,
+        override val text: String,
+        override val onClick: () -> Unit,
     ) : HeaderPriceModel
 }

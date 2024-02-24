@@ -4,9 +4,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
 import coil.compose.AsyncImage
 import coil.compose.AsyncImagePainter
 import com.quare.blitzplit.component.utils.onNullableClick
+import com.quare.blitzsplit.component.R
 
 @Composable
 fun Picture(
@@ -14,7 +16,7 @@ fun Picture(
     modifier: Modifier = Modifier,
     contentScale: ContentScale = ContentScale.Crop,
     onPhotoClick: (() -> Unit)? = null,
-    error: Painter? = null,
+    error: Painter? = painterResource(id = R.drawable.quare_logo),
     placeholder: Painter? = null,
     onLoading: ((AsyncImagePainter.State.Loading) -> Unit)? = null,
     onError: ((AsyncImagePainter.State.Error) -> Unit)? = null,
