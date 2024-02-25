@@ -2,7 +2,7 @@ package com.quare.blitzsplit.main.presentation.component.dialog
 
 import androidx.compose.runtime.Composable
 import com.quare.blitzplit.component.dialog.bill.BillBottomSheet
-import com.quare.blitzplit.component.dialog.bill.list.BillDialogListComponent
+import com.quare.blitzplit.component.dialog.bill.list.billDialogListComponent
 import com.quare.blitzsplit.main.domain.model.MainModalType
 
 @Composable
@@ -18,14 +18,14 @@ fun MainScreenDialog(model: MainModalType) {
                 title = title,
                 onDismiss = onDismiss,
                 middleContent = {
-                    BillDialogListComponent(
+                    billDialogListComponent(
                         data = items,
-                        onConfirmButtonClick = onConfirmButtonClick,
-                        onRevertButtonClick = onRevertButtonClick,
-                        mustShowRevertButton = mustShowRevertButton
                     )
                 },
-                textInfo = textInfo
+                textInfo = textInfo,
+                mustShowRevertButton = mustShowRevertButton,
+                onConfirmButtonClick = onConfirmButtonClick,
+                onRevertButtonClick = onRevertButtonClick
             )
         }
     }
