@@ -30,7 +30,7 @@ internal fun SuccessGroupsScreen(
             item {
                 when (itemList) {
                     is GroupsScreenItem.CreateGroupButtonModel -> {
-                        VerticalSpacer(itemList.padding.dp)
+                        VerticalSpacer(itemList.space.dp)
                         CreateGroupButton(
                             modifier = Modifier.fillMaxWidth(),
                             onClick = createGroupClick

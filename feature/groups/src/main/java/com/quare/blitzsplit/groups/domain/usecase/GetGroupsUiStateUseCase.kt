@@ -20,23 +20,23 @@ class GetGroupsUiStateUseCase(
                logic based on number of groups in screen depending on screen size */
         return if (isCreateGroupAtTop) {
             getCreateGroupButton(
-                padding = CREATE_GROUP_AT_TOP_PADDING
+                space = CREATE_GROUP_AT_TOP_SPACE
             ) + withDebitGroups + paidOffGroupsTitle + paidOffGroups
         } else {
             withDebitGroups + paidOffGroupsTitle + paidOffGroups + getCreateGroupButton(
-                padding = CREATE_GROUP_AT_BOTTOM_PADDING
+                space = CREATE_GROUP_AT_BOTTOM_SPACE
             )
         }
     }
 
     private fun getCreateGroupButton(
-        padding: Int,
+        space: Int,
     ): List<GroupsScreenItem.CreateGroupButtonModel> = listOf(
-        GroupsScreenItem.CreateGroupButtonModel(padding)
+        GroupsScreenItem.CreateGroupButtonModel(space)
     )
 
     companion object {
-        private const val CREATE_GROUP_AT_TOP_PADDING = 0
-        private const val CREATE_GROUP_AT_BOTTOM_PADDING = 8
+        private const val CREATE_GROUP_AT_TOP_SPACE = 0
+        private const val CREATE_GROUP_AT_BOTTOM_SPACE = 8
     }
 }
