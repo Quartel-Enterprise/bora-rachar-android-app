@@ -6,6 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
@@ -28,10 +29,13 @@ internal fun SuccessGroupsScreen(
         items.forEachIndexed { index, itemList ->
             item {
                 when (itemList) {
-                    GroupsScreenItem.CreateGroupButtonModel -> CreateGroupButton(
-                        modifier = Modifier.fillMaxWidth(),
-                        onClick = createGroupClick
-                    )
+                    is GroupsScreenItem.CreateGroupButtonModel -> {
+                        VerticalSpacer(itemList.space.dp)
+                        CreateGroupButton(
+                            modifier = Modifier.fillMaxWidth(),
+                            onClick = createGroupClick
+                        )
+                    }
 
                     GroupsScreenItem.PaidOffGroupsTitle -> Text(
                         text = "Grupos Quitados:",

@@ -4,7 +4,7 @@ import com.quare.blitzplit.component.chip.price.model.PriceChipsModel
 
 sealed interface GroupsScreenItem {
 
-    data object CreateGroupButtonModel : GroupsScreenItem
+    data class CreateGroupButtonModel(val space: Int) : GroupsScreenItem
 
     data object PaidOffGroupsTitle: GroupsScreenItem
 

@@ -13,16 +13,30 @@ class GetGroupsUiStateUseCase(
         } ?: GroupsUiState.Error("Error getting groups") // TODO: more specific message
 
     private fun getItems(groups: List<GroupsScreenItem>): List<GroupsScreenItem> {
-        val createGroupsButton = listOf(GroupsScreenItem.CreateGroupButtonModel)
         val paidOffGroupsTitle = listOf(GroupsScreenItem.PaidOffGroupsTitle)
         val withDebitGroups = groups.filterIsInstance<GroupsScreenItem.GroupItem.WithDebits>()
         val paidOffGroups = groups.filterIsInstance<GroupsScreenItem.GroupItem.PaidOff>()
         val isCreateGroupAtTop = (withDebitGroups + paidOffGroups).size > 3 /* TODO: improve this
                logic based on number of groups in screen depending on screen size */
         return if (isCreateGroupAtTop) {
-            createGroupsButton + withDebitGroups + paidOffGroupsTitle + paidOffGroups
+            getCreateGroupButton(
+                space = CREATE_GROUP_AT_TOP_SPACE
+            ) + withDebitGroups + paidOffGroupsTitle + paidOffGroups
         } else {
-            withDebitGroups + paidOffGroupsTitle + paidOffGroups + createGroupsButton
+            withDebitGroups + paidOffGroupsTitle + paidOffGroups + getCreateGroupButton(
+                space = CREATE_GROUP_AT_BOTTOM_SPACE
+            )
         }
+    }
+
+    private fun getCreateGroupButton(
+        space: Int,
+    ): List<GroupsScreenItem.CreateGroupButtonModel> = listOf(
+        GroupsScreenItem.CreateGroupButtonModel(space)
+    )
+
+    companion object {
+        private const val CREATE_GROUP_AT_TOP_SPACE = 0
+        private const val CREATE_GROUP_AT_BOTTOM_SPACE = 8
     }
 }
