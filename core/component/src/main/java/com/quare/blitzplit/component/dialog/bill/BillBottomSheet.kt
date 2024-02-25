@@ -1,7 +1,9 @@
 package com.quare.blitzplit.component.dialog.bill
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.Text
@@ -9,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.quare.blitzplit.component.dialog.BillBottomActions
 import com.quare.blitzplit.component.dialog.bill.model.BillDialogColouredTextModel
 import com.quare.blitzplit.component.spacer.VerticalSpacer
 import com.quare.blitzsplit.theme.BlitzSplitTheme
@@ -17,20 +20,34 @@ import com.quare.blitzsplit.theme.BlitzSplitTheme
 @Composable
 fun BillBottomSheet(
     title: String,
+    mustShowRevertButton: Boolean,
+    onConfirmButtonClick: () -> Unit,
     onDismiss: () -> Unit,
-    middleContent: @Composable (() -> Unit),
+    onRevertButtonClick: () -> Unit,
+    middleContent: LazyListScope.() -> Unit,
     textInfo: BillDialogColouredTextModel,
 ) {
     ModalBottomSheet(
         onDismissRequest = onDismiss,
     ) {
-        Column(modifier = Modifier.padding(horizontal = 16.dp)) {
-            Text(text = title)
-            VerticalSpacer(16.dp)
-            TextBillDescription(textInfo)
-            VerticalSpacer(24.dp)
+        LazyColumn(modifier = Modifier.padding(horizontal = 16.dp)) {
+            item {
+                Text(text = title)
+                VerticalSpacer(16.dp)
+                TextBillDescription(textInfo)
+                VerticalSpacer(24.dp)
+            }
             middleContent()
-            VerticalSpacer(24.dp)
+            item {
+                VerticalSpacer(8.dp)
+                BillBottomActions(
+                    modifier = Modifier.fillMaxWidth(),
+                    onRevertButtonClick = onRevertButtonClick,
+                    mustShowRevertButton = mustShowRevertButton,
+                    onConfirmButtonClick = onConfirmButtonClick
+                )
+                VerticalSpacer(24.dp)
+            }
         }
     }
 }
@@ -43,13 +60,18 @@ fun BillDialogPreview() {
             title = "A Pagar",
             onDismiss = {},
             middleContent = {
-                Text(text = "Middle Content")
+                item {
+                    Text(text = "Middle Content")
+                }
             },
             textInfo = BillDialogColouredTextModel.Pay(
                 usersAmount = 3,
                 currencyText = "R$ 9,90",
                 membersText = "grupo"
             ),
+            onConfirmButtonClick = {},
+            onRevertButtonClick = {},
+            mustShowRevertButton = true
         )
     }
 }

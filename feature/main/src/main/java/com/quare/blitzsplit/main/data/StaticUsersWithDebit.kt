@@ -24,7 +24,7 @@ object StaticUsersWithDebit {
         model = UserModel(
             id = "3",
             profilePictureUrl = StaticImages.FABIRCIO,
-            name = "Fabrício\nK."
+            name = "Fabrício K."
         ),
         debitType = DebitType.PAY,
         debitAmount = "R$ 249,99"
