@@ -4,8 +4,6 @@ import com.quare.blitzsplit.groups.data.GroupsRepositoryImpl
 import com.quare.blitzsplit.groups.data.datasource.LocalGroupsDataSource
 import com.quare.blitzsplit.groups.data.datasource.RemoteGroupsDataSource
 import com.quare.blitzsplit.groups.domain.repository.GroupsRepository
-import com.quare.blitzsplit.groups.domain.usecase.GetGroupsUiStateUseCase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
