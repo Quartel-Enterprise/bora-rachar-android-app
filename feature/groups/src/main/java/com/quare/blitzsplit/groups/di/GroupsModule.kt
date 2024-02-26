@@ -16,12 +16,6 @@ import dagger.hilt.android.components.ViewModelComponent
 object GroupsModule {
 
     @Provides
-    fun providesLocalGroupsDataSource(): LocalGroupsDataSource = LocalGroupsDataSource()
-
-    @Provides
-    fun providesRemoteGroupsDataSource(): RemoteGroupsDataSource = RemoteGroupsDataSource()
-
-    @Provides
     fun providesGroupsRepository(
         localGroupsDataSource: LocalGroupsDataSource,
         remoteGroupsDataSource: RemoteGroupsDataSource,
@@ -29,9 +23,4 @@ object GroupsModule {
         localDataSource = localGroupsDataSource,
         remoteDataSource = remoteGroupsDataSource
     )
-
-    @Provides
-    fun providesGetGroupsUiStateUseCase(
-        groupsRepository: GroupsRepository,
-    ) = GetGroupsUiStateUseCase(groupsRepository)
 }

@@ -43,7 +43,8 @@ dependencies {
     // Modules
     implementCore(
         Module.Core.Component,
-        Module.Core.Theme
+        Module.Core.Theme,
+        Module.Core.Utils,
     )
 
     // Compose

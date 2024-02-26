@@ -5,10 +5,12 @@ import com.quare.blitzplit.component.dialog.bill.model.BillDialogColouredTextMod
 import com.quare.blitzsplit.main.domain.model.DebitType
 import com.quare.blitzsplit.main.domain.model.ModalBillClicks
 import com.quare.blitzsplit.main.domain.model.MainModalType
+import com.quare.blitzsplit.utils.CurrencyFormatter
 import javax.inject.Inject
 
 class GetInitialPayModalStateUseCase @Inject constructor(
     private val getBillDialogContentRowModel: GetBillDialogContentRowModel,
+    private val currencyFormatter: CurrencyFormatter
 ) {
     operator fun invoke(clicks: ModalBillClicks): MainModalType.Bill = MainModalType.Bill(
         title = "A pagar",
@@ -21,7 +23,7 @@ class GetInitialPayModalStateUseCase @Inject constructor(
         ),
         textInfo = BillDialogColouredTextModel.Pay(
             usersAmount = 3,
-            currencyText = "R$ 9,90",
+            currencyText = currencyFormatter.format(9.90),
             membersText = "total"
         ),
         onConfirmButtonClick = clicks.onConfirmButtonClick,

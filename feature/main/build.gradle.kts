@@ -44,12 +44,13 @@ dependencies {
     implementCore(
         Module.Core.Component,
         Module.Core.Theme,
-        Module.Core.User
+        Module.Core.User,
+        Module.Core.Utils,
     )
     implementFeature(
         Module.Feature.Groups,
         Module.Feature.Activities,
-        Module.Feature.Contacts
+        Module.Feature.Contacts,
     )
 
     // Compose

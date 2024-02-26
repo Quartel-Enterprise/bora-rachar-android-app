@@ -2,12 +2,15 @@ package domain.usecase
 
 import com.quare.blitzplit.component.chip.price.PriceChipsClicks
 import com.quare.blitzplit.component.utils.StaticImages
+import com.quare.blitzsplit.utils.CurrencyFormatter
 import domain.model.GroupDetailsModel
 import domain.model.HeaderDetailsModel
 import domain.model.HeaderPriceModel
 import javax.inject.Inject
 
-class GetGroupDetailsUseCase @Inject constructor() {
+class GetGroupDetailsUseCase @Inject constructor(
+    private val currencyFormatter: CurrencyFormatter
+) {
 
     suspend operator fun invoke(
         clicks: PriceChipsClicks,
@@ -16,11 +19,11 @@ class GetGroupDetailsUseCase @Inject constructor() {
         header = HeaderDetailsModel(
             photoUrl = StaticImages.DOG,
             payChip = HeaderPriceModel.Pay(
-                text = "Pagar R$ 9.90 a 3 membros",
+                text = "Pagar ${currencyFormatter.format(9.9)} a 3 membros",
                 onClick = clicks.toPay
             ),
             receiveChip = HeaderPriceModel.Receive(
-                text = "Receber R$ 250 de Pierre V.",
+                text = "Receber ${currencyFormatter.format(250)} de Pierre V.",
                 onClick = clicks.toReceive
             )
         )
