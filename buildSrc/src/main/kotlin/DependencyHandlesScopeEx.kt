@@ -9,6 +9,10 @@ fun DependencyHandler.implementFeature(vararg modules: Module.Feature) {
     implementModules(*modules)
 }
 
+fun DependencyHandler.implementUi(vararg modules: Module.Ui) {
+    implementModules(*modules)
+}
+
 internal fun DependencyHandler.implementModules(vararg modules: Module) {
     modules.forEach { module ->
         add("implementation", project(path = ":${module.path}"))

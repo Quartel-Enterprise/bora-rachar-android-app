@@ -42,8 +42,6 @@ android {
 dependencies {
     // Modules
     implementCore(
-        Module.Core.Component,
-        Module.Core.Theme,
         Module.Core.User,
         Module.Core.Utils,
     )
@@ -52,6 +50,10 @@ dependencies {
         Module.Feature.Activities,
         Module.Feature.Contacts,
     )
+    implementUi(
+        Module.Ui.Component,
+        Module.Ui.Theme,
+        )
 
     // Compose
     implementation(platform(libs.composeBom))

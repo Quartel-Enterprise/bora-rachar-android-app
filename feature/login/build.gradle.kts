@@ -42,9 +42,11 @@ android {
 dependencies {
     // Modules
     implementCore(
-        Module.Core.Component,
-        Module.Core.Theme,
         Module.Core.User
+    )
+    implementUi(
+        Module.Ui.Component,
+        Module.Ui.Theme
     )
     // Compose
     implementation(platform(libs.composeBom))

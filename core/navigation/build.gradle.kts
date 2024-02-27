@@ -40,9 +40,11 @@ android {
 dependencies {
     // Modules
     implementCore(
-        Module.Core.Theme,
-        Module.Core.Component,
-        Module.Core.User
+        Module.Core.User,
+    )
+    implementUi(
+        Module.Ui.Theme,
+        Module.Ui.Component
     )
     implementFeature(
         Module.Feature.Login,
