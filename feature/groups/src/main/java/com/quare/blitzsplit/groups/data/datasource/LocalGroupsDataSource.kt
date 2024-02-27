@@ -5,9 +5,12 @@ import com.quare.blitzplit.component.utils.StaticImages
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.domain.model.MoreParticipantsModel
 import com.quare.blitzsplit.groups.domain.model.UserDebitsModel
+import com.quare.blitzsplit.utils.CurrencyFormatter
 import javax.inject.Inject
 
-class LocalGroupsDataSource @Inject constructor() {
+class LocalGroupsDataSource @Inject constructor(
+    private val currencyFormatter: CurrencyFormatter
+) {
     fun getGroups(): Result<List<GroupsScreenItem.GroupItem>> = Result.success(
         listOf(
             GroupsScreenItem.GroupItem.WithDebits(
@@ -23,8 +26,8 @@ class LocalGroupsDataSource @Inject constructor() {
                 ),
                 imageUrl = StaticImages.DOG,
                 priceChipsModel = PriceChipsModel(
-                    toPay = "R$ 9,90",
-                    toReceive = "R$ 250,00",
+                    toPay = currencyFormatter.format(9.90),
+                    toReceive = currencyFormatter.format(250)
                 ),
                 profilePictures = listOf(
                     StaticImages.ARRIGHI,
@@ -47,7 +50,7 @@ class LocalGroupsDataSource @Inject constructor() {
                 imageUrl = StaticImages.MILEI,
                 priceChipsModel = PriceChipsModel(
                     toPay = null,
-                    toReceive = "R$ 250,00",
+                    toReceive = currencyFormatter.format(250)
                 ),
                 profilePictures = listOf(
                     StaticImages.ARRIGHI,

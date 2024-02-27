@@ -3,8 +3,9 @@ package com.quare.blitzsplit.groups.domain.usecase
 import com.quare.blitzsplit.groups.domain.model.GroupsScreenItem
 import com.quare.blitzsplit.groups.domain.repository.GroupsRepository
 import com.quare.blitzsplit.groups.presentation.viewmodel.GroupsUiState
+import javax.inject.Inject
 
-class GetGroupsUiStateUseCase(
+class GetGroupsUiStateUseCase @Inject constructor(
     private val groupsRepository: GroupsRepository,
 ) {
     suspend operator fun invoke(): GroupsUiState =
