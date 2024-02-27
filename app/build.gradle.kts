@@ -52,10 +52,14 @@ android {
 }
 
 dependencies {
-    implementFeature(Module.Feature.Login)
+    implementFeature(
+        Module.Feature.Login,
+    )
     implementCore(
-        Module.Core.Theme,
-        Module.Core.Navigation
+        Module.Core.Navigation,
+    )
+    implementUi(
+        Module.Ui.Theme,
     )
 
     // Compose

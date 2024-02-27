@@ -16,18 +16,23 @@ private val featureModules = listOf(
     "login",
     "main"
 )
+
 private val coreModules = listOf(
-    "component",
     "navigation",
-    "theme",
     "user",
     "utils"
 )
 
+private val uiModules = listOf(
+    "component",
+    "theme",
+)
+
 private val allModules = featureModules.map { "feature:$it" } +
-        coreModules.map { "core:$it" } +
+        coreModules.map { "core:$it" } + uiModules.map { "ui:$it" } +
         listOf("app")
 
 allModules.forEach { module ->
     include(":$module")
 }
+include(":ui")

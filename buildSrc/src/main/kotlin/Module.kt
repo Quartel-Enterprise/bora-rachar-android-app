@@ -10,10 +10,13 @@ sealed class Module(val path: String) {
     }
 
     sealed class Core(corePath: String) : Module("core:$corePath") {
-        object Component : Core("component")
         object Navigation : Core("navigation")
-        object Theme : Core("theme")
         object User : Core("user")
         object Utils : Core("utils")
+    }
+
+    sealed class Ui(uiPath: String) : Module("ui:$uiPath") {
+        object Component : Ui("component")
+        object Theme : Ui("theme")
     }
 }

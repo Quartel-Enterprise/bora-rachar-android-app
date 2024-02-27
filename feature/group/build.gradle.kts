@@ -41,9 +41,11 @@ android {
 
 dependencies {
     // Modules
+    implementUi(
+        Module.Ui.Component,
+        Module.Ui.Theme
+    )
     implementCore(
-        Module.Core.Component,
-        Module.Core.Theme,
         Module.Core.Utils,
     )
 
