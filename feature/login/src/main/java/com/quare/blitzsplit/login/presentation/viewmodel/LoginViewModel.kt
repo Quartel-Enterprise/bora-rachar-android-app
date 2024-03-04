@@ -39,7 +39,7 @@ class LoginViewModel @Inject constructor(
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
                 emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
             } ?: run {
-                _state.update { it.copy(isLoading = false) }
+                showLoginButtonWithoutLoading()
                 emit(LoginUiAction.ShowError(message = "Error to proceed with login"))
             }
         }
@@ -53,7 +53,13 @@ class LoginViewModel @Inject constructor(
                     emitSignResult(signResult)
                 }
             }
+        } else {
+            showLoginButtonWithoutLoading()
         }
+    }
+
+    private fun showLoginButtonWithoutLoading() {
+        _state.update { it.copy(isLoading = false) }
     }
 
     private fun ActivityResult.isOk(): Boolean = resultCode == ComponentActivity.RESULT_OK
