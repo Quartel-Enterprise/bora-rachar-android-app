@@ -5,6 +5,8 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.IntentSenderRequest
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.common.api.CommonStatusCodes
 import com.quare.blitzsplit.login.domain.model.SignInResult
 import com.quare.blitzsplit.login.presentation.signin.SignInResultProvider
 import com.quare.blitzsplit.login.presentation.signin.IntentSenderProvider
@@ -35,15 +37,24 @@ class LoginViewModel @Inject constructor(
     fun onLogin() {
         _state.update { it.copy(isLoading = true) }
         viewModelScope.launch {
-            intentSenderProvider.signIn()?.let { intentSender ->
+            val result = intentSenderProvider.signIn()
+            result.onSuccess { intentSender ->
                 val intentSenderRequest = IntentSenderRequest.Builder(intentSender).build()
                 emit(LoginUiAction.OpenGoogleLoginBottomSheet(intent = intentSenderRequest))
-            } ?: run {
+            }.onFailure { exception ->
                 showLoginButtonWithoutLoading()
-                emit(LoginUiAction.ShowError(message = "Error to proceed with login"))
+                val message = getLoginErrorMessage(exception)
+                emit(LoginUiAction.ShowError(message))
             }
         }
     }
+
+    private fun getLoginErrorMessage(exception: Throwable): String =
+        if (exception is ApiException && exception.statusCode == CommonStatusCodes.CANCELED) {
+            "You've tried to login too many times. Please wait 24 hours before trying again."
+        } else {
+            "Error while trying to login with Google"
+        }
 
     fun selectGoogleUser(result: ActivityResult) {
         if (result.isOk()) {
