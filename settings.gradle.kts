@@ -6,7 +6,7 @@ pluginManagement {
     }
 }
 
-rootProject.name = "BlitzSplit"
+rootProject.name = "Blitz Split"
 
 private val featureModules = listOf(
     "activities",
