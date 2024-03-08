@@ -3,6 +3,7 @@ sealed class Module(val path: String) {
     sealed class Feature(featurePath: String) : Module("feature:$featurePath") {
         object Activities : Feature("activities")
         object Contacts : Feature("contacts")
+        object CreateGroup : Feature("create_group")
         object Group : Feature("group")
         object Groups : Feature("groups")
         object Login : Feature("login")
