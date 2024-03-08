@@ -11,6 +11,7 @@ rootProject.name = "Blitz Split"
 private val featureModules = listOf(
     "activities",
     "contacts",
+    "create_group",
     "group",
     "groups",
     "login",
@@ -35,4 +36,3 @@ private val allModules = featureModules.map { "feature:$it" } +
 allModules.forEach { module ->
     include(":$module")
 }
-include(":ui")
