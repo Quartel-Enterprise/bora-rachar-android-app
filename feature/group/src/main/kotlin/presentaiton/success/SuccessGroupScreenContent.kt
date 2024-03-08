@@ -6,10 +6,12 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.quare.blitzplit.component.appbar.AppBar
 import com.quare.blitzplit.component.utils.StaticImages
 import com.quare.blitzsplit.theme.BlitzSplitTheme
@@ -35,13 +37,23 @@ fun SuccessGroupScreenContent(
             )
         }
     ) { paddingValues ->
-        LazyColumn(modifier = modifier.padding(paddingValues)) {
+        LazyColumn(
+            modifier = modifier
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp)
+        ) {
             item {
                 GroupHeader(
                     modifier = Modifier
-                        .padding(horizontal = 16.dp)
                         .fillMaxWidth(),
                     headerDetails = groupDetails.header
+                )
+            }
+            item {
+                Text(
+                    modifier = Modifier.padding(vertical = 16.dp),
+                    text = "Ver saldo dos membros:",
+                    fontSize = 16.sp
                 )
             }
         }
